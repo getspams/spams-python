@@ -1,9 +1,16 @@
+*.pyc
+*.pyo
+*.sublime*
+*.idea*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # C extensions
 *.so
+*.c
 
 # Distribution / packaging
 .Python
@@ -13,6 +20,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
+.eggs/
 lib/
 lib64/
 parts/
@@ -36,9 +44,11 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .coverage
+.coverage.*
 .cache
 nosetests.xml
 coverage.xml
+*,cover
 
 # Translations
 *.mo
@@ -52,3 +62,8 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# VS Code
+.vscode/
+
+*.png

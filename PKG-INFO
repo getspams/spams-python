@@ -1,10 +1,16 @@
-Metadata-Version: 1.0
-Name: spams
-Version: 2.6
+Metadata-Version: 1.1
+Name: dmri-spams
+Version: 2.6.1
 Summary: Python interface for SPAMS
-Home-page: http://
+Home-page: http://spams-devel.gforge.inria.fr/
 Author: Julien Mairal
-Author-email: nomail
-License: UNKNOWN
+Author-email: spams.dev@inria.fr
+License: GPLv3
 Description: UNKNOWN
+Keywords: optimization
 Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 2/3
