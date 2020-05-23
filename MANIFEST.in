@@ -1,0 +1,11 @@
+include INSTALL-package
+
+include README
+include LICENSE.txt
+
+recursive-include spams_wrap *.h
+recursive-include spams_wrap *.cpp
+
+recursive-include tests *.py
+recursive-include data *.png
+recursive-include doc *
