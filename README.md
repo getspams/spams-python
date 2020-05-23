@@ -1,5 +1,5 @@
 
-# SPAMS 2.6.1 and python
+# SPAMS 2.6.2 and python
 
 SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various sparse estimation problems.
 
