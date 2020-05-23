@@ -113,7 +113,7 @@ def mkhtml(d=None, base='sphinx'):
 long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
-opts = dict(name='dmri-spams',
+opts = dict(name='spams-python',
             version='2.6.1',
             description='Python interface for SPAMS',
             long_description=long_description,
