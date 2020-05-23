@@ -110,9 +110,13 @@ def mkhtml(d=None, base='sphinx'):
     return l
 
 
+long_description = """Python interface for SPArse Modeling Software (SPAMS),
+an optimization toolbox for solving various sparse estimation problems."""
+
 opts = dict(name='dmri-spams',
             version='2.6.1',
             description='Python interface for SPAMS',
+            long_description=long_description,
             author='Julien Mairal',
             author_email='spams.dev@inria.fr',
             url='http://spams-devel.gforge.inria.fr/',
