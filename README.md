@@ -20,18 +20,18 @@ SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various 
 
 ---
 
-Author:
+### Author:
 * Julien Mairal (Inria) with the collaboration of Francis Bach (Inria),
 * Jean Ponce (Ecole Normale Supérieure),
 * Guillermo Sapiro (University of Minnesota),
 * Guillaume Obozinski (Inria),
 * Rodolphe Jenatton (Inria).
 
-Credit:
+### Credit:
 * R and Python interfaces by Jean-Paul Chieze (Inria).
 * Archetypal analysis implementation by Yuansi Chen (internship at Inria) with the collaboration of Zaid Harchaoui.
 
-Maintenance:
+### Maintenance:
 * Development and maintenance are done by Ghislain Durif (Inria).
 
 Licence: GPL v3
@@ -58,7 +58,7 @@ pip install -e .
 ### Testing the interface :
 ```bash
 python tests/test_spams.py -h # to get help
-python tests/test_spams.py  # will run all the tests
+python tests/test_spams.py    # will run all the tests
 ```
 
 ### Comments
