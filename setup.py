@@ -1,6 +1,7 @@
 import os
 from distutils.sysconfig import get_python_inc
 from distutils.util import get_platform
+import sys
 
 from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
@@ -18,7 +19,12 @@ def get_config():
     incs.append(get_python_inc())
     incs.extend(blas_info().get_include_dirs())
 
-    cc_flags = ['-fPIC', '-Wunused-variable', '-m64']
+    cc_flags = ['-fPIC', '-Wunused-variable', '-Wno-uninitialized']
+    if sys.maxsize > 2**32:
+        cc_flags.append('-m64')
+    else:
+        cc_flags.append('-m32')
+
     for _ in np.__config__.blas_opt_info.get('extra_compile_args', []):
         if _ not in cc_flags:
             cc_flags.append(_)
@@ -49,7 +55,7 @@ def get_config():
         for _ in np.__config__.blas_opt_info.get('library_dirs', []):
             if _ not in libdirs:
                 libdirs.append(_)
-        libs.extend(['mkl_rt', 'pthread'])
+        libs.extend(['mkl_rt'])
     else:
         libs.extend(['blas', 'lapack'])
 
@@ -114,7 +120,7 @@ long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
 opts = dict(name='spams-python',
-            version='2.6.2',
+            version='2.6.1.3',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',
