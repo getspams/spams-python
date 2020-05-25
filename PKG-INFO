@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
-Name: spams-python
-Version: 2.6.1.3
+Name: python-spams
+Version: 2.6.1.1
 Summary: Python interface for SPAMS
 Home-page: http://spams-devel.gforge.inria.fr/
 Author: Julien Mairal

@@ -1,6 +1,7 @@
 import os
 from distutils.sysconfig import get_python_inc
 from distutils.util import get_platform
+import platform
 import sys
 
 from setuptools import setup, Extension, find_packages
@@ -59,7 +60,7 @@ def get_config():
     else:
         libs.extend(['blas', 'lapack'])
 
-    if not get_platform().startswith('macosx'):
+    if platform.system() != 'Darwin':
         cc_flags.append('-fopenmp')
         link_flags.append('-fopenmp')
 
@@ -119,8 +120,8 @@ def mkhtml(d=None, base='sphinx'):
 long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
-opts = dict(name='spams-python',
-            version='2.6.1.3',
+opts = dict(name='python-spams',
+            version='2.6.1.1',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',

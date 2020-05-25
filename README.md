@@ -1,5 +1,5 @@
 
-# SPAMS 2.6.1.3 and python
+# SPAMS 2.6.1.1 and python
 
 SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various sparse estimation problems.
 
@@ -44,7 +44,7 @@ Manipulated objects are imported from numpy and scipy. Matrices should be stored
 
 The standard installation uses the BLAS and LAPACK libraries used by Numpy:
 ```bash
-pip install spams-python
+pip install python-spams
 ```
 
 ### Installation from sources
@@ -62,4 +62,4 @@ python tests/test_spams.py    # will run all the tests
 ```
 
 ### Comments
-Carefully install libblas & liblapack. For example on ubuntu, necessary to `sudo apt-get -y install libblas-dev liblapack-dev gfortran`
+Carefully install libblas & liblapack. For example on ubuntu, necessary to `sudo apt-get -y install libblas-dev liblapack-dev gfortran`. For MacOs, you most likely need to `brew install gcc openblas lapack`

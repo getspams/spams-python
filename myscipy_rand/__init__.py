@@ -1,7 +1,7 @@
 __all__ = ['myscipy_rand']
 
 from pkg_resources import get_distribution
-__version__ = get_distribution('spams-python').version
+__version__ = get_distribution('python-spams').version
 
 from .myscipy_rand import *
 

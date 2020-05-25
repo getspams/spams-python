@@ -1,6 +1,6 @@
 __all__ = ['spams']
 
 from pkg_resources import get_distribution
-__version__ = get_distribution('spams-python').version
+__version__ = get_distribution('python-spams').version
 
 from .spams import *
