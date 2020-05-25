@@ -1,6 +1,4 @@
-include INSTALL-package
-
-include README
+include README.md
 include LICENSE.txt
 
 recursive-include spams_wrap *.h

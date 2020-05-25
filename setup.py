@@ -121,7 +121,7 @@ long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
 opts = dict(name='python-spams',
-            version='2.6.1.1',
+            version='2.6.1.2',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',
