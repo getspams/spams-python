@@ -1,6 +1,6 @@
-Cython==0.29.*
-numpy==1.18.*
-Pillow==6.2.*
-scipy==1.4.*
-setuptools==46.1.*
-six==1.15.*
+Cython>=0.29
+numpy>=1.12
+Pillow>=6.0
+scipy>=1.0
+setuptools>=46.1
+six>=1.12
