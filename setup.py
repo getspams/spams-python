@@ -63,8 +63,6 @@ def get_config():
     if platform.system() != 'Darwin':
         cc_flags.append('-fopenmp')
         link_flags.append('-fopenmp')
-    else:
-        link_flags.extend(['-framework', 'Python'])
 
     return incs, libs, libdirs, cc_flags, link_flags
 
@@ -123,7 +121,7 @@ long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
 opts = dict(name='python-spams',
-            version='2.6.1.7',
+            version='2.6.1.9',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',
@@ -132,7 +130,7 @@ opts = dict(name='python-spams',
             license='GPLv3',
             setup_requires=['Cython>=0.29', 'numpy>=1.12'],
             install_requires=['Cython>=0.29', 'numpy>=1.12',
-                              'Pillow>=6.0', 'scipy>=1.0', 'six==1.12'],
+                              'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
             packages=find_packages(),
             cmdclass={'build_ext': CustomBuildExtCommand},
             ext_modules=get_extension(),
