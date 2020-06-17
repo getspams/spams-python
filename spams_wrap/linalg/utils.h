@@ -14,7 +14,7 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include <cmath>
+#include <math.h>
 #include <assert.h>
 
 //#ifdef HAVE_MKL   // obsolete

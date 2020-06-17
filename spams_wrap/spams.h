@@ -10,7 +10,7 @@
 #include <fstream>
 #include <list>
 #include <vector>
-#include <cmath>
+#include <math.h>
 #include <iostream>
 typedef unsigned int uint32_t;
 typedef int int32_t;
