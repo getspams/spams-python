@@ -20,7 +20,7 @@ def get_config():
     incs.append(get_python_inc())
     incs.extend(blas_info().get_include_dirs())
 
-    cc_flags = ['-fPIC', '-Wno-nullability-completeness', '-Wunused-variable', '-Wno-uninitialized']
+    cc_flags = ['-fPIC', '-Wunused-variable', '-Wno-uninitialized']
     if sys.maxsize > 2**32:
         cc_flags.append('-m64')
     else:
@@ -121,7 +121,7 @@ long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
 opts = dict(name='python-spams',
-            version='2.6.1.10',
+            version='2.6.1.11',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',
