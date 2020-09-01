@@ -122,7 +122,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 opts = dict(name='spams',
-            version='2.6.2.4',
+            version='2.6.2.5',
             description='Python interface for SPAMS',
             long_description=long_description,
             long_description_content_type='text/markdown',
@@ -130,6 +130,7 @@ opts = dict(name='spams',
             author_email='spams.dev@inria.fr',
             url='http://spams-devel.gforge.inria.fr/',
             license='GPLv3',
+            python_requires='>=3',
             setup_requires=['Cython>=0.29', 'numpy>=1.12'],
             install_requires=['Cython>=0.29', 'numpy>=1.12',
                               'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
