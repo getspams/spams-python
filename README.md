@@ -1,7 +1,8 @@
-
 # SPAMS 2.6.2 and python
 
-SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various sparse estimation problems.
+Python interface for SPArse Modeling Software (SPAMS).
+
+SPAMS is an optimization toolbox for solving various sparse estimation problems.
 
 -   Dictionary learning and matrix factorization:
 	- NMF
@@ -17,6 +18,11 @@ SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various 
 	- sparse group lasso
 	- tree-structured regularization
 	- structured sparsity with overlapping groups.
+
+Links:
+- http://spams-devel.gforge.inria.fr/ (project webpage)
+- https://gitlab.inria.fr/thoth/spams-devel (general development)
+- https://gitlab.inria.fr/thoth/python-spams (python package)
 
 ---
 
