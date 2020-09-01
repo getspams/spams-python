@@ -69,6 +69,8 @@ python tests/test_spams.py    # will run all the tests
 
 ### Comments
 
-Carefully install libblas & liblapack. For example on ubuntu, necessary to `sudo apt-get -y install libblas-dev liblapack-dev gfortran`. For MacOs, you most likely need to `brew install gcc openblas lapack`.
+Carefully install libblas & liblapack. For example on ubuntu, it is necessary to do `sudo apt-get -y install libblas-dev liblapack-dev gfortran`. For MacOs, you most likely need to do `brew install gcc openblas lapack`.
 
-For better performance, we recommand to use the MKL Intel library library that for instance is available Anaconda Python distribution.
+For better performance, we recommand to use the **MKL Intel library** that is for instance available in Anaconda Python distribution.
+
+SPAMS for Python was tested on **Linux** and **MacOS**. It is **not available for Windows** at the moment. **For MacOS users**, the install setup detects if OpenMP is available on your system and enable/disable OpenMP support accordingly. For better performance, we recommand to install an **OpenMP-compatible compiler** on your system.
