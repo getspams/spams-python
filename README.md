@@ -1,5 +1,5 @@
 
-# SPAMS 2.6.1 and python
+# SPAMS 2.6.2 and python
 
 SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various sparse estimation problems.
 
@@ -20,19 +20,24 @@ SPAMS (SPArse Modeling Software) is an optimization toolbox for solving various 
 
 ---
 
-### Author:
+### Authors
+
 * Julien Mairal (Inria) with the collaboration of Francis Bach (Inria),
 * Jean Ponce (Ecole Normale Supérieure),
 * Guillermo Sapiro (University of Minnesota),
 * Guillaume Obozinski (Inria),
 * Rodolphe Jenatton (Inria).
 
-### Credit:
+### Credit
+
 * R and Python interfaces by Jean-Paul Chieze (Inria).
 * Archetypal analysis implementation by Yuansi Chen (internship at Inria) with the collaboration of Zaid Harchaoui.
+* Porting to Python 3 (version 2.6 and 2.6.1) by Ghislain Durif (Inria).
+* Installation pipeline improvement (version 2.6.2) by François Rheault and Samuel Saint-Jean (https://github.com/frheault/python-spams).
 
-### Maintenance:
-* Development and maintenance are done by Ghislain Durif (Inria).
+### Maintenance
+
+* Maintenance is done by Ghislain Durif (Inria).
 
 Licence: GPL v3
 
@@ -44,7 +49,7 @@ Manipulated objects are imported from numpy and scipy. Matrices should be stored
 
 The standard installation uses the BLAS and LAPACK libraries used by Numpy:
 ```bash
-pip install python-spams
+pip install spams
 ```
 
 ### Installation from sources
@@ -55,11 +60,15 @@ pip install -e .
 ```
 
 
-### Testing the interface :
+### Testing the interface
+
 ```bash
 python tests/test_spams.py -h # to get help
 python tests/test_spams.py    # will run all the tests
 ```
 
 ### Comments
-Carefully install libblas & liblapack. For example on ubuntu, necessary to `sudo apt-get -y install libblas-dev liblapack-dev gfortran`. For MacOs, you most likely need to `brew install gcc openblas lapack`
+
+Carefully install libblas & liblapack. For example on ubuntu, necessary to `sudo apt-get -y install libblas-dev liblapack-dev gfortran`. For MacOs, you most likely need to `brew install gcc openblas lapack`.
+
+For better performance, we recommand to use the MKL Intel library library that for instance is available Anaconda Python distribution.
