@@ -122,7 +122,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 opts = dict(name='spams',
-            version='2.6.2.2',
+            version='2.6.2.4',
             description='Python interface for SPAMS',
             long_description=long_description,
             long_description_content_type='text/markdown',
