@@ -39,7 +39,7 @@ Links:
 * R and Python interfaces by Jean-Paul Chieze (Inria).
 * Archetypal analysis implementation by Yuansi Chen (internship at Inria) with the collaboration of Zaid Harchaoui.
 * Porting to Python 3 (version 2.6 and 2.6.1) by Ghislain Durif (Inria).
-* Installation pipeline improvement (version 2.6.2) by François Rheault and Samuel Saint-Jean (https://github.com/frheault/python-spams).
+* Library reorganization and installation pipeline improvement (version 2.6.2) by François Rheault and Samuel Saint-Jean (https://github.com/frheault/python-spams).
 
 ### Maintenance
 
