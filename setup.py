@@ -1,12 +1,12 @@
 import os
-from distutils.sysconfig import get_python_inc
-from distutils.util import get_platform
 import platform
 import sys
 
 from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
 
+from distutils.sysconfig import get_python_inc
+from distutils.util import get_platform
 
 def get_config():
     # Import numpy here, only when headers are needed
@@ -121,7 +121,7 @@ long_description = """Python interface for SPArse Modeling Software (SPAMS),
 an optimization toolbox for solving various sparse estimation problems."""
 
 opts = dict(name='python-spams',
-            version='2.6.1.11',
+            version='2.6.2.0',
             description='Python interface for SPAMS',
             long_description=long_description,
             author='Julien Mairal',
