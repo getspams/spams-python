@@ -1,12 +1,47 @@
 import os
-import platform
+# import platform
 import sys
 
 from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
 
 from distutils.sysconfig import get_python_inc
-from distutils.util import get_platform
+# from distutils.util import get_platform
+
+def check_openmp():
+    # see https://stackoverflow.com/questions/16549893/programatically-testing-for-openmp-support-from-a-python-setup-script/16555458#16555458
+    import os, tempfile, textwrap, subprocess, shutil
+
+    # see http://openmp.org/wp/openmp-compilers/
+    omp_test = textwrap.dedent(
+        r"""
+        #include <omp.h>
+        #include <stdio.h>
+        int main() {
+        #pragma omp parallel
+        printf("Hello from thread %d over %d\n", omp_get_thread_num(), omp_get_num_threads());
+        }
+        """
+    )
+
+    try:
+        tmpdir = tempfile.mkdtemp()
+        filename = r'test.c'
+        with open(os.path.join(tmpdir, filename), 'w') as file:
+            file.write(omp_test)
+        with open(os.devnull, 'w') as fnull:
+            result = subprocess.call(
+                ['cc', '-fopenmp' ,'-o',
+                 os.path.join(tmpdir, "exec"),
+                 os.path.join(tmpdir, filename)],
+                stdout=fnull, stderr=fnull
+            )
+    except:
+        result = 1
+    finally:
+        shutil.rmtree(tmpdir)
+    # output : 0 if ok, 1 if not
+    return result
 
 def get_config():
     # Import numpy here, only when headers are needed
@@ -26,41 +61,75 @@ def get_config():
     else:
         cc_flags.append('-m32')
 
-    for _ in np.__config__.blas_opt_info.get('extra_compile_args', []):
-        if _ not in cc_flags:
-            cc_flags.append(_)
-    for _ in np.__config__.lapack_opt_info.get('extra_compile_args', []):
-        if _ not in cc_flags:
-            cc_flags.append(_)
+    # blas/lapack compile/linking info
+    try:
+        blas_opt_info = np.__config__.blas_opt_info
+    except:
+        try:
+            blas_opt_info = np.__config__.blas_ilp64_opt_info
+        except:
+            blas_opt_info = None
 
+    try:
+        lapack_opt_info = np.__config__.lapack_opt_info
+    except:
+        try:
+            lapack_opt_info = np.__config__.bla_ilp64_opt_info
+        except:
+            lapack_opt_info = None
+
+    # blas extra compile args
+    if blas_opt_info is not None:
+        for _ in blas_opt_info.get('extra_compile_args', []):
+            if _ not in cc_flags:
+                cc_flags.append(_)
+
+    # lapack extra compile args
+    if lapack_opt_info is not None:
+        for _ in lapack_opt_info.get('extra_compile_args', []):
+            if _ not in cc_flags:
+                cc_flags.append(_)
+
+    # linking flags
     link_flags = []
-    for _ in np.__config__.blas_opt_info.get('extra_link_args', []):
-        if _ not in link_flags:
-            link_flags.append(_)
-    for _ in np.__config__.lapack_opt_info.get('extra_link_args', []):
-        if _ not in link_flags:
-            link_flags.append(_)
 
+    # blas extra linking flags
+    if blas_opt_info is not None:
+        for _ in blas_opt_info.get('extra_link_args', []):
+            if _ not in link_flags:
+                link_flags.append(_)
+
+    # lapack extra linking flags
+    if lapack_opt_info is not None:
+        for _ in lapack_opt_info.get('extra_link_args', []):
+            if _ not in link_flags:
+                link_flags.append(_)
+
+    # libs
     libs = ['stdc++']
+
+    # mkl ?
     is_mkl = False
-    for lib in np.__config__.blas_opt_info.get('libraries', []):
-        if 'mkl' in lib:
-            is_mkl = True
-            break
+    if blas_opt_info is not None:
+        for lib in blas_opt_info.get('libraries', []):
+            if 'mkl' in lib:
+                is_mkl = True
+                break
 
     libdirs = np.distutils.system_info.blas_info().get_lib_dirs()
     if is_mkl:
-        for _ in np.__config__.blas_opt_info.get('include_dirs', []):
+        for _ in blas_opt_info.get('include_dirs', []):
             if _ not in incs:
                 incs.append(_)
-        for _ in np.__config__.blas_opt_info.get('library_dirs', []):
+        for _ in blas_opt_info.get('library_dirs', []):
             if _ not in libdirs:
                 libdirs.append(_)
         libs.extend(['mkl_rt'])
     else:
         libs.extend(['blas', 'lapack'])
 
-    if platform.system() != 'Darwin':
+    # openMP
+    if check_openmp() == 0:
         cc_flags.append('-fopenmp')
         link_flags.append('-fopenmp')
 
@@ -121,37 +190,39 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-opts = dict(name='spams',
-            version='2.6.2.5',
-            description='Python interface for SPAMS',
-            long_description=long_description,
-            long_description_content_type='text/markdown',
-            author='Julien Mairal',
-            author_email='spams.dev@inria.fr',
-            url='http://spams-devel.gforge.inria.fr/',
-            license='GPLv3',
-            python_requires='>=3',
-            setup_requires=['Cython>=0.29', 'numpy>=1.12'],
-            install_requires=['Cython>=0.29', 'numpy>=1.12',
-                              'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
-            packages=find_packages(),
-            cmdclass={'build_ext': CustomBuildExtCommand},
-            ext_modules=get_extension(),
-            data_files=[('tests', ['tests/test_spams.py',
-                                   'tests/test_decomp.py',
-                                   'tests/test_dictLearn.py',
-                                   'tests/test_linalg.py',
-                                   'tests/test_prox.py',
-                                   'tests/test_utils.py']),
-                        ('doc', ['doc/doc_spams.pdf']),
-                        ('doc/sphinx/_sources',
-                         mkhtml(d='_sources', base='doc/sphinx')),
-                        ('doc/sphinx/_static', mkhtml(d='_static',
-                                                      base='doc/sphinx')),
-                        ('doc/sphinx', mkhtml(base='doc/sphinx')),
-                        ('doc/html', mkhtml(base='doc/html')),
-                        ('tests', ['data/boat.png', 'data/lena.png'])],
-            include_package_data=True,
-            zip_safe=True)
+opts = dict(
+    name='spams',
+    version='2.6.3.0',
+    description='Python interface for SPAMS',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    author='Julien Mairal',
+    author_email='spams.dev@inria.fr',
+    url='http://spams-devel.gforge.inria.fr/',
+    license='GPLv3',
+    python_requires='>=3',
+    setup_requires=['Cython>=0.29', 'numpy>=1.12'],
+    install_requires=['Cython>=0.29', 'numpy>=1.12',
+                      'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
+    packages=find_packages(),
+    cmdclass={'build_ext': CustomBuildExtCommand},
+    ext_modules=get_extension(),
+    data_files=[('tests', ['tests/test_spams.py',
+                           'tests/test_decomp.py',
+                           'tests/test_dictLearn.py',
+                           'tests/test_linalg.py',
+                           'tests/test_prox.py',
+                           'tests/test_utils.py']),
+                ('doc', ['doc/doc_spams.pdf']),
+                ('doc/sphinx/_sources',
+                 mkhtml(d='_sources', base='doc/sphinx')),
+                ('doc/sphinx/_static', mkhtml(d='_static',
+                                              base='doc/sphinx')),
+                ('doc/sphinx', mkhtml(base='doc/sphinx')),
+                ('doc/html', mkhtml(base='doc/html')),
+                ('tests', ['data/boat.png', 'data/lena.png'])],
+    include_package_data=True,
+    zip_safe=True
+)
 
 setup(**opts)
