@@ -1,4 +1,4 @@
-# SPAMS 2.6.2 and python
+# SPAMS and python
 
 Python interface for SPArse Modeling Software (SPAMS).
 
