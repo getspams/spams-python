@@ -190,9 +190,21 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+
+SETUP_REQUIRE = ['Cython>=0.29']
+INSTALL_REQUIRE = ['Cython>=0.29', 'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12']
+
+if sys.version_info < (3,8):
+    SETUP_REQUIRE += ['numpy>=1.12,<1.22']
+    INSTALL_REQUIRE += ['numpy>=1.12,<1.22']
+else:
+    SETUP_REQUIRE += ['numpy>=1.12']
+    INSTALL_REQUIRE += ['numpy>=1.12']
+
+
 opts = dict(
     name='spams',
-    version='2.6.3.0',
+    version='2.6.3.1',
     description='Python interface for SPAMS',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -201,9 +213,8 @@ opts = dict(
     url='http://spams-devel.gforge.inria.fr/',
     license='GPLv3',
     python_requires='>=3',
-    setup_requires=['Cython>=0.29', 'numpy>=1.12'],
-    install_requires=['Cython>=0.29', 'numpy>=1.12',
-                      'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
+    setup_requires=SETUP_REQUIRE,
+    install_requires=INSTALL_REQUIRE,
     packages=find_packages(),
     cmdclass={'build_ext': CustomBuildExtCommand},
     ext_modules=get_extension(),
