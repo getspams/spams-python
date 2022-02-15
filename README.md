@@ -114,19 +114,19 @@ Version 2.1 and later are open-source under [GPLv3 licence](http://www.gnu.org/l
 
 - 14/02/2022: Python SPAMS is now officially hosted on [Github](https://github.com/getspams/spams-python)
 - 07/02/2022: [SPAMS C++ project](https://github.com/getspams/spams-devel) and [SPAMS for R](https://github.com/getspams/spams-R) are now officially hosted on Github
-- 03/02/2022: Python SPAMS v2.6.3 is released (source and PyPI).
-- 03/09/2020: Python SPAMS v2.6.2 is released (source and PyPI).
-- 15/01/2019: Python SPAMS v2.6.1 is available on PyPI).
-- 08/12/2017: Python SPAMS v2.6.1 for Anaconda (with MKL support) is released.
-- 24/08/2017: Python SPAMS v2.6.1 is released (a single source code for Python 3 and 2).
-- 27/02/2017: SPAMS v2.6 is released, including precompiled Matlab packages, R-3.x and Python3.x compatibility.
-- 25/05/2014: SPAMS v2.5 is released.
-- 12/05/2013: SPAMS v2.4 is released.
-- 05/23/2012: SPAMS v2.3 is released.
-- 03/24/2012: SPAMS v2.2 is released with a Python and R interface, and new compilation scripts for a better Windows/Mac OS compatibility.
+- 03/02/2022: Python SPAMS v2.6.3 is released (source and PyPI)
+- 03/09/2020: Python SPAMS v2.6.2 is released (source and PyPI)
+- 15/01/2019: Python SPAMS v2.6.1 is available on PyPI)
+- 08/12/2017: Python SPAMS v2.6.1 for Anaconda (with MKL support) is released
+- 24/08/2017: Python SPAMS v2.6.1 is released (a single source code for Python 3 and 2)
+- 27/02/2017: SPAMS v2.6 is released, including precompiled Matlab packages, R-3.x and Python3.x compatibility
+- 25/05/2014: SPAMS v2.5 is released
+- 12/05/2013: SPAMS v2.4 is released
+- 05/23/2012: SPAMS v2.3 is released
+- 03/24/2012: SPAMS v2.2 is released with a Python and R interface, and new compilation scripts for a better Windows/Mac OS compatibility
 - 06/30/2011: SPAMS v2.1 goes open-source!
 - 11/04/2010: SPAMS v2.0 is out for Linux and Mac OS!
-- 02/23/2010: Windows 32 bits version available! Elastic-Net is implemented.
+- 02/23/2010: Windows 32 bits version available! Elastic-Net is implemented
 - 10/26/2009: Mac OS, 64 bits version available!
 
 ---
