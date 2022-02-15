@@ -201,7 +201,6 @@ opts = dict(
     url='http://spams-devel.gforge.inria.fr/',
     license='GPLv3',
     python_requires='>=3',
-    setup_requires=['Cython>=0.29', 'numpy>=1.12'],
     install_requires=['Cython>=0.29', 'numpy>=1.12',
                       'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
     packages=find_packages(),
