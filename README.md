@@ -61,9 +61,9 @@ python tests/test_spams.py    # will run all the tests
 - [Official website](https://thoth.inrialpes.fr/people/mairal/spams/) (documentation and downloads)
 - [Python specific project](https://github.com/getspams/spams-python) and [PyPI](https://pypi.org/project/spams/) repository (available with `pip install spams`)
 - [R specific project](https://github.com/getspams/spams-R) (available with `remotes::install_github("getspams/spams-R")`)
-- [Original C++ project](https://github.com/getspams/spams-devel)
+- [Original C++ project](https://github.com/getspams/spams-devel) (and original sources for Matlab, Python and R interfaces)
 
-> SPAMS-related git repositories are also available on [Inria](https://www.inria.fr/) [gitlab forge](https://gitlab.inria.fr/): see [Original C++ project](https://gitlab.inria.fr/thoth/spams-devel), [Python specific project](https://gitlab.inria.fr/thoth/python-spams)
+> SPAMS-related git repositories are also available on [Inria](https://www.inria.fr/) [gitlab forge](https://gitlab.inria.fr/): see [original C++ project](https://gitlab.inria.fr/thoth/spams-devel)  (and original sources for Matlab, Python and R interfaces), [Python specific project](https://gitlab.inria.fr/thoth/python-spams)
 
 
 ## Contact
@@ -81,13 +81,13 @@ For any other question related to the use or development of SPAMS:
 
 ## Authorship
 
-It is developed and maintained by [Julien Mairal](http://julien.mairal.org) (Inria), and contains sparse estimation methods resulting from collaborations with various people: notably, [Francis Bach](http://www.di.ens.fr/~fbach), [Jean Ponce](http://www.di.ens.fr/~ponce), Guillermo Sapiro, [Rodolphe Jenatton](http://www.di.ens.fr/~jenatton/) and [Guillaume Obozinski](http://imagine.enpc.fr/~obozinsg/).
+SPAMS is developed and maintained by [Julien Mairal](http://julien.mairal.org) (Inria), and contains sparse estimation methods resulting from collaborations with various people: notably, [Francis Bach](http://www.di.ens.fr/~fbach), [Jean Ponce](http://www.di.ens.fr/~ponce), Guillermo Sapiro, [Rodolphe Jenatton](http://www.di.ens.fr/~jenatton/) and [Guillaume Obozinski](http://imagine.enpc.fr/~obozinsg/).
 
 It is coded in C++ with a Matlab interface. Interfaces for R and Python have been developed by Jean-Paul Chieze, and archetypal analysis was written by Yuansi Chen.
 
 Release of version 2.6/2.6.1 and porting to R-3.x and Python3.x was done by [Ghislain Durif](https://gdurif.perso.math.cnrs.fr/) (Inria). The original porting to Python3.x is based on [this patch](https://aur.archlinux.org/packages/python-spams-svn/) and on the work of John Kirkham available [here](https://github.com/conda-forge/python-spams-feedstock).
 
-Version 2.6.2 (Python only) update is based on contributions by [François Rheault](https://github.com/frheault) and [Samuel Saint-Jean](http://samuelstjean.github.io/).
+Version 2.6.2 (Python only) update is based on contributions by [Francois Rheault](https://github.com/frheault) and [Samuel Saint-Jean](http://samuelstjean.github.io/).
 
 ### Maintenance
 
@@ -95,7 +95,7 @@ Since version 2.6.3+, SPAMS (especially the Python version) is now maintained by
 
 - [Alessandro Daducci](https://github.com/daducci)
 - [Ghislain Durif](https://gdurif.perso.math.cnrs.fr/)
-- [François Rheault](https://github.com/frheault)
+- [Francois Rheault](https://github.com/frheault)
 - [Samuel Saint-Jean](http://samuelstjean.github.io/)
 
 ---
