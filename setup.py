@@ -186,19 +186,27 @@ def mkhtml(d=None, base='sphinx'):
     return l
 
 
+# project root directory
 this_directory = os.path.abspath(os.path.dirname(__file__))
+
+# version number
+with open(os.path.join(this_directory, "version"), encoding="utf-8") as v:
+    current_version = v.read().rstrip()
+
+# package description
 with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+# setup config
 opts = dict(
     name='spams',
-    version='2.6.3.0',
+    version=current_version,
     description='Python interface for SPAMS',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Julien Mairal',
     author_email='spams.dev@inria.fr',
-    url='http://spams-devel.gforge.inria.fr/',
+    url='https://thoth.inrialpes.fr/people/mairal/spams/',
     license='GPLv3',
     python_requires='>=3',
     install_requires=['Cython>=0.29', 'numpy>=1.12',
