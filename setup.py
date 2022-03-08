@@ -196,15 +196,6 @@ opts = dict(
     packages=find_packages(),
     cmdclass={'build_ext': CustomBuildExtCommand},
     ext_modules=get_extension(),
-    data_files=[('tests', ['tests/test_spams.py',
-                           'tests/test_decomp.py',
-                           'tests/test_dictLearn.py',
-                           'tests/test_linalg.py',
-                           'tests/test_prox.py',
-                           'tests/test_utils.py']),
-                ('doc', ['doc/doc_spams.pdf']),
-                ('tests', ['data/boat.png', 'data/lena.png'])],
-    include_package_data=True,
     zip_safe=True
 )
 
