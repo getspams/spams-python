@@ -168,24 +168,6 @@ def get_extension():
     return [spams_wrap]
 
 
-def mkhtml(d=None, base='sphinx'):
-    if d is None:
-        d = base
-    else:
-        d = os.path.join(base, d)
-    if not os.path.isdir(base):
-        return []
-    hdir = d
-
-    l1 = os.listdir(hdir)
-    l = []
-    for s in l1:
-        s = os.path.join(d, s)
-        if not os.path.isdir(s):
-            l.append(s)
-    return l
-
-
 # project root directory
 this_directory = os.path.abspath(os.path.dirname(__file__))
 
@@ -221,12 +203,6 @@ opts = dict(
                            'tests/test_prox.py',
                            'tests/test_utils.py']),
                 ('doc', ['doc/doc_spams.pdf']),
-                ('doc/sphinx/_sources',
-                 mkhtml(d='_sources', base='doc/sphinx')),
-                ('doc/sphinx/_static', mkhtml(d='_static',
-                                              base='doc/sphinx')),
-                ('doc/sphinx', mkhtml(base='doc/sphinx')),
-                ('doc/html', mkhtml(base='doc/html')),
                 ('tests', ['data/boat.png', 'data/lena.png'])],
     include_package_data=True,
     zip_safe=True
