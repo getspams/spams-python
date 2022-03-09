@@ -49,9 +49,20 @@ Manipulated objects are imported from numpy and scipy. Matrices should be stored
 
 ### Testing the interface
 
+- From the command line (in the project root directory):
 ```bash
-python spams/tests/test_spams.py -h # to get help
-python spams/tests/test_spams.py    # will run all the tests
+python tests/test_spams.py -h       # print the man page
+python tests/test_spams.py          # run all the tests
+```
+
+- From Python (assuming `spams` package is installed):
+```python
+from spams.tests import test_spams
+
+test_spams('-h')                    # print the man page
+test_spams()                        # run all tests
+test_spams(['sort', 'calcAAt'])     # run specific tests
+test_spams(python_exec='python3')   # specify the python exec
 ```
 
 ---
