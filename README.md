@@ -49,7 +49,7 @@ Manipulated objects are imported from numpy and scipy. Matrices should be stored
 
 ### Testing the interface
 
-- From the command line (in the project root directory):
+- From the command line (to be called from the project root directory):
 ```bash
 python tests/test_spams.py -h       # print the man page
 python tests/test_spams.py          # run all the tests
@@ -63,6 +63,12 @@ test_spams('-h')                    # print the man page
 test_spams()                        # run all tests
 test_spams(['sort', 'calcAAt'])     # run specific tests
 test_spams(python_exec='python3')   # specify the python exec
+```
+
+- From the command line (assuming `spams` package is installed):
+```bash
+# c.f. previous point for the different options
+python -c "from spams.tests import test_spams; test_spams()"
 ```
 
 ---
