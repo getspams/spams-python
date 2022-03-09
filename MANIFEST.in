@@ -7,4 +7,6 @@ recursive-include spams_wrap *.cpp
 
 recursive-include spams/tests *.py
 recursive-include spams/data *.png
+recursive-include tests *.py
+recursive-include data *.png
 recursive-include doc *
