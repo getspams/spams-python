@@ -2,7 +2,7 @@ import os
 # import platform
 import sys
 
-from setuptools import setup, Extension, find_packages
+from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 
 from distutils.sysconfig import get_python_inc
@@ -193,11 +193,11 @@ opts = dict(
     python_requires='>=3',
     install_requires=['Cython>=0.29', 'numpy>=1.12',
                       'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
-    packages=find_packages(),
+    packages=['myscipy_rand', 'spams_wrap', 'spams', 'spams.tests'],
     cmdclass={'build_ext': CustomBuildExtCommand},
     ext_modules=get_extension(),
     package_data={
-        "spams": ["data/*.png", "tests/*.py", "version"]
+        "spams": ["data/*.png", "version"]
     },
     zip_safe=True
 )
