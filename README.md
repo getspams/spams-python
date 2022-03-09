@@ -50,8 +50,8 @@ Manipulated objects are imported from numpy and scipy. Matrices should be stored
 ### Testing the interface
 
 ```bash
-python tests/test_spams.py -h # to get help
-python tests/test_spams.py    # will run all the tests
+python spams/tests/test_spams.py -h # to get help
+python spams/tests/test_spams.py    # will run all the tests
 ```
 
 ---

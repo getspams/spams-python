@@ -196,6 +196,9 @@ opts = dict(
     packages=find_packages(),
     cmdclass={'build_ext': CustomBuildExtCommand},
     ext_modules=get_extension(),
+    package_data={
+        "spams": ["data/*.png", "tests/*.py"]
+    },
     zip_safe=True
 )
 
