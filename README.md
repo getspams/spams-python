@@ -80,7 +80,7 @@ python -c "from spams.tests import test_spams; test_spams()"
 - [R specific project](https://github.com/getspams/spams-R) (available with `remotes::install_github("getspams/spams-R")`)
 - [Original C++ project](https://github.com/getspams/spams-devel) (and original sources for Matlab, Python and R interfaces)
 
-> SPAMS-related git repositories are also available on [Inria](https://www.inria.fr/) [gitlab forge](https://gitlab.inria.fr/): see [original C++ project](https://gitlab.inria.fr/thoth/spams-devel)  (and original sources for Matlab, Python and R interfaces), [Python specific project](https://gitlab.inria.fr/thoth/python-spams)
+> SPAMS-related git repositories are also available on [Inria](https://www.inria.fr/) [gitlab forge](https://gitlab.inria.fr/): see [original C++ project](https://gitlab.inria.fr/thoth/spams-devel)  (and original sources for Matlab, Python and R interfaces), [Python specific project](https://gitlab.inria.fr/thoth/spams-python)
 
 
 ## Contact
