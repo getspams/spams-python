@@ -1,6 +1,3 @@
-from __future__ import absolute_import, division, print_function
-import six.moves
-
 import sys
 import time
 import test_utils
@@ -68,7 +65,7 @@ def main(argv):
             print("**** %s ****" % testname)
             # exec('lstm = test_%s.tests' %testname)
             lstm = locals()['test_%s' % testname].tests
-            for i in six.moves.xrange(0, len(lstm), 2):
+            for i in range(0, len(lstm), 2):
                 run_test(lstm[i], lstm[i+1])
             continue
         else:
@@ -76,7 +73,7 @@ def main(argv):
             for m in modules:
                 # exec('lstm = test_%s.tests' %m)
                 lstm = locals()['test_%s' % m].tests
-                for i in six.moves.xrange(0, len(lstm), 2):
+                for i in range(0, len(lstm), 2):
                     if (lstm[i] == testname):
                         found = True
                         run_test(lstm[i], lstm[i+1])

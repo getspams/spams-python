@@ -1,9 +1,5 @@
-from __future__ import absolute_import, division, print_function
-
-import sys
 import os
 import numpy as np
-import scipy
 import scipy.sparse as ssp
 from PIL import Image
 
@@ -11,23 +7,16 @@ import spams
 import time
 from test_utils import *
 
-if not ('rand' in ssp.__dict__):
-    import myscipy_rand
-    ssprand = myscipy_rand.rand
-else:
-    ssprand = ssp.rand
-    
-    
 def get_img_file_path(img):
     """Return path to an image file
-    
+
     Arguments:
-        img (string): image filename without path among 'boat.png' or 
+        img (string): image filename without path among 'boat.png' or
         'lena.png'.
-        
+
     Output:
         img_file (string): normalized path to image input filename.
-    
+
     """
     # check input
     if not img in ["boat.png", "lena.png"]:

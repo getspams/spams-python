@@ -3,9 +3,6 @@ This module makes some functions of the SPAMS library usable
 with numpy and scipy.
 """
 
-from __future__ import absolute_import, division, print_function
-import six.moves
-
 import spams_wrap
 import numpy as np
 import scipy.sparse as ssp
@@ -37,16 +34,16 @@ def sort(X, mode=True):
 
 def calcAAt(A):
     """
-        Compute efficiently AAt = A*A', when A is sparse 
+        Compute efficiently AAt = A*A', when A is sparse
       and has a lot more columns than rows. In some cases, it is
       up to 20 times faster than the equivalent python expression
       AAt=A*A';
 
     Args:
-        A: double sparse m x n matrix   
+        A: double sparse m x n matrix
 
     Returns:
-        AAt: double m x m matrix 
+        AAt: double m x m matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -64,16 +61,16 @@ def calcAAt(A):
 
 def calcXAt(X, A):
     """
-        Compute efficiently XAt = X*A', when A is sparse and has a 
-      lot more columns than rows. In some cases, it is up to 20 times 
+        Compute efficiently XAt = X*A', when A is sparse and has a
+      lot more columns than rows. In some cases, it is up to 20 times
       faster than the equivalent python expression;
 
     Args:
         X: double m x n matrix
-        A: double sparse p x n matrix   
+        A: double sparse p x n matrix
 
     Returns:
-        XAt: double m x p matrix 
+        XAt: double m x p matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -110,10 +107,10 @@ def calcXY(X, Y):
 
     Args:
         X: double m x n matrix
-        Y: double n x p matrix   
+        Y: double n x p matrix
 
     Returns:
-        Z: double m x p matrix 
+        Z: double m x p matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -130,10 +127,10 @@ def calcXYt(X, Y):
 
     Args:
         X: double m x n matrix
-        Y: double p x n matrix   
+        Y: double p x n matrix
 
     Returns:
-        Z: double m x p matrix 
+        Z: double m x p matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -150,10 +147,10 @@ def calcXtY(X, Y):
 
     Args:
         X: double n x m matrix
-        Y: double n x p matrix   
+        Y: double n x p matrix
 
     Returns:
-        Z: double m x p matrix 
+        Z: double m x p matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -170,11 +167,11 @@ def bayer(X, offset):
           There are four possible offsets.
 
     Args:
-        X: double m x n matrix   
-        offset: scalar, 0,1,2 or 3   
+        X: double m x n matrix
+        offset: scalar, 0,1,2 or 3
 
     Returns:
-        Y: double m x m matrix 
+        Y: double m x m matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -189,7 +186,7 @@ def bayer(X, offset):
 
 def conjGrad(A, b, x0=None, tol=1e-10, itermax=None):
     """
-        Conjugate gradient algorithm, sometimes faster than the 
+        Conjugate gradient algorithm, sometimes faster than the
        equivalent python function solve. In order to solve Ax=b;
 
     Args:
@@ -224,10 +221,10 @@ def invSym(A):
         returns the inverse of a symmetric matrix A
 
     Args:
-        A: double n x n matrix   
+        A: double n x n matrix
 
     Returns:
-        B: double n x n matrix 
+        B: double n x n matrix
 
     Authors:
     Julien MAIRAL, 2009 (spams, matlab interface and documentation)
@@ -246,10 +243,10 @@ def normalize(A):
            unit l2-norm.
 
     Args:
-        X: double m x n matrix   
+        X: double m x n matrix
 
     Returns:
-        Y: double m x n matrix 
+        Y: double m x n matrix
 
     Authors:
     Julien MAIRAL, 2010 (spams, matlab interface and documentation)
@@ -279,7 +276,7 @@ PENALTY2 = spams_wrap.PENALTY2
 def sparseProject(U, thrs=1.0, mode=1, lambda1=0.0, lambda2=0.0,
                   lambda3=0.0, pos=0, numThreads=-1):
     """
-        sparseProject solves various optimization 
+        sparseProject solves various optimization
         problems, including projections on a few convex sets.
 
         It aims at addressing the following problems
@@ -289,11 +286,11 @@ def sparseProject(U, thrs=1.0, mode=1, lambda1=0.0, lambda2=0.0,
           2) when mode=2
               min_v ||u-v||_2^2  s.t. ||v||_2^2 + lamuda1||v||_1 <= thrs
           3) when mode=3
-              min_v ||u-v||_2^2  s.t  ||v||_1 + 0.5lamuda1||v||_2^2 <= thrs 
+              min_v ||u-v||_2^2  s.t  ||v||_1 + 0.5lamuda1||v||_2^2 <= thrs
           4) when mode=4
               min_v 0.5||u-v||_2^2 + lamuda1||v||_1  s.t  ||v||_2^2 <= thrs
           5) when mode=5
-              min_v 0.5||u-v||_2^2 + lamuda1||v||_1 +lamuda2 FL(v) + ... 
+              min_v 0.5||u-v||_2^2 + lamuda1||v||_1 +lamuda2 FL(v) + ...
                                                       0.5lamuda_3 ||v||_2^2
              where FL denotes a "fused lasso" regularization term.
           6) when mode=6
@@ -301,7 +298,7 @@ def sparseProject(U, thrs=1.0, mode=1, lambda1=0.0, lambda2=0.0,
                                                 0.5lamuda3||v||_2^2 <= thrs
 
            When pos=true and mode <= 4,
-           it solves the previous problems with positivity constraints 
+           it solves the previous problems with positivity constraints
 
     Args:
         U: double m x n matrix   (input signals)
@@ -329,7 +326,7 @@ def sparseProject(U, thrs=1.0, mode=1, lambda1=0.0, lambda2=0.0,
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting 
+            - single precision setting
 
     """
 
@@ -348,7 +345,7 @@ def lasso(X, D=None, Q=None, q=None, return_reg_path=False, L=-1, lambda1=None, 
           max_length_path=-1, verbose=False, cholesky=False):
     """
         lasso is an efficient implementation of the
-        homotopy-LARS algorithm for solving the Lasso. 
+        homotopy-LARS algorithm for solving the Lasso.
 
 
         If the function is called this way spams.lasso(X,D = D, Q = None,...),
@@ -377,7 +374,7 @@ def lasso(X, D=None, Q=None, q=None, return_reg_path=False, L=-1, lambda1=None, 
         Q: p x p double matrix (Q = D'D)
         q: p x n double matrix (q = D'X)
         verbose: verbose mode
-        return_reg_path: 
+        return_reg_path:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -392,7 +389,7 @@ def lasso(X, D=None, Q=None, q=None, return_reg_path=False, L=-1, lambda1=None, 
         numThreads: (optional, number of threads for exploiting
           multi-core / multi-cpus. By default, it takes the value -1,
           which automatically selects all the available CPUs/cores).
-        cholesky: (optional, default false),  choose between Cholesky 
+        cholesky: (optional, default false),  choose between Cholesky
           implementation or one based on the matrix inversion Lemma
         ols: (optional, default false), perform an orthogonal projection
           before returning the solution.
@@ -411,7 +408,7 @@ def lasso(X, D=None, Q=None, q=None, return_reg_path=False, L=-1, lambda1=None, 
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting (even though the output alpha is double 
+            - single precision setting (even though the output alpha is double
               precision)
 
     Examples:
@@ -475,7 +472,7 @@ def lassoMask(X, D, B, L=-1, lambda1=None, lambda2=0.,
           1) when mode=0
             min_{alpha} ||diag(beta)(x-Dalpha)||_2^2 s.t. ||alpha||_1 <= lambda1
           2) when mode=1
-            min_{alpha} ||alpha||_1 s.t. ||diag(beta)(x-Dalpha)||_2^2 
+            min_{alpha} ||alpha||_1 s.t. ||diag(beta)(x-Dalpha)||_2^2
                                                                  <= lambda1*||beta||_0/m
           3) when mode=2
             min_{alpha} 0.5||diag(beta)(x-Dalpha)||_2^2 +
@@ -496,7 +493,7 @@ def lassoMask(X, D, B, L=-1, lambda1=None, lambda2=0.,
 
     Kwargs:
         lambda1: (parameter)
-        L: (optional, maximum number of elements of each 
+        L: (optional, maximum number of elements of each
           decomposition)
         pos: (optional, adds positivity constraints on the
           coefficients, false by default)
@@ -517,7 +514,7 @@ def lassoMask(X, D, B, L=-1, lambda1=None, lambda2=0.,
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting (even though the output alpha is double 
+            - single precision setting (even though the output alpha is double
               precision)
 
     """
@@ -538,7 +535,7 @@ def lassoWeighted(X, D, W, L=-1, lambda1=None,
     """
         lassoWeighted is an efficient implementation of the
         LARS algorithm for solving the weighted Lasso. It is optimized
-        for solving a large number of small or medium-sized 
+        for solving a large number of small or medium-sized
         decomposition problem (and not for a single large one).
 
         It first computes the Gram matrix D'D and then perform
@@ -546,14 +543,14 @@ def lassoWeighted(X, D, W, L=-1, lambda1=None,
         For all columns x of X, and w of W, it computes one column alpha of A
         which is the solution of
           1) when mode=0
-            min_{alpha} ||x-Dalpha||_2^2   s.t.  
+            min_{alpha} ||x-Dalpha||_2^2   s.t.
                                         ||diag(w)alpha||_1 <= lambda1
           2) when mode=1
             min_{alpha} ||diag(w)alpha||_1  s.t.
                                            ||x-Dalpha||_2^2 <= lambda1
           3) when mode=2
-            min_{alpha} 0.5||x-Dalpha||_2^2  +  
-                                            lambda1||diag(w)alpha||_1 
+            min_{alpha} 0.5||x-Dalpha||_2^2  +
+                                            lambda1||diag(w)alpha||_1
         Possibly, when pos=true, it solves the previous problems
         with positivity constraints on the vectors alpha
 
@@ -568,7 +565,7 @@ def lassoWeighted(X, D, W, L=-1, lambda1=None,
 
     Kwargs:
         lambda1: (parameter)
-        L: (optional, maximum number of elements of each 
+        L: (optional, maximum number of elements of each
           decomposition)
         pos: (optional, adds positivity constraints on the
           coefficients, false by default)
@@ -587,7 +584,7 @@ def lassoWeighted(X, D, W, L=-1, lambda1=None,
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting (even though the output alpha is double 
+            - single precision setting (even though the output alpha is double
               precision)
 
     """
@@ -607,7 +604,7 @@ def omp(X, D, L=None, eps=None, lambda1=None, return_reg_path=False, numThreads=
     """
         omp is an efficient implementation of the
         Orthogonal Matching Pursuit algorithm. It is optimized
-        for solving a large number of small or medium-sized 
+        for solving a large number of small or medium-sized
         decomposition problem (and not for a single large one).
 
         It first computes the Gram matrix D'D and then perform
@@ -615,12 +612,12 @@ def omp(X, D, L=None, eps=None, lambda1=None, return_reg_path=False, numThreads=
         X=[x^1,...,x^n] is a matrix of signals, and it returns
         a matrix A=[alpha^1,...,alpha^n] of coefficients.
 
-        it addresses for all columns x of X, 
+        it addresses for all columns x of X,
             min_{alpha} ||alpha||_0  s.t  ||x-Dalpha||_2^2 <= eps
             or
             min_{alpha} ||x-Dalpha||_2^2  s.t. ||alpha||_0 <= L
             or
-            min_{alpha} 0.5||x-Dalpha||_2^2 + lambda1||alpha||_0 
+            min_{alpha} 0.5||x-Dalpha||_2^2 + lambda1||alpha||_0
 
     Args:
         X: double m x n matrix   (input signals)
@@ -629,11 +626,11 @@ def omp(X, D, L=None, eps=None, lambda1=None, return_reg_path=False, numThreads=
         D: double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
           All the columns of D should have unit-norm !
-        return_reg_path: 
+        return_reg_path:
           if true the function will return a tuple of matrices.
 
     Kwargs:
-        L: (optional, maximum number of elements in each decomposition, 
+        L: (optional, maximum number of elements in each decomposition,
           min(m,p) by default)
         eps: (optional, threshold on the squared l2-norm of the residual,
           0 by default
@@ -655,11 +652,11 @@ def omp(X, D, L=None, eps=None, lambda1=None, return_reg_path=False, numThreads=
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-         - single precision setting (even though the output alpha is double 
+         - single precision setting (even though the output alpha is double
            precision)
          - Passing an int32 vector of length n to L provides
            a different parameter L for each input signal x_i
-         - Passing a double vector of length n to eps and or lambda1 
+         - Passing a double vector of length n to eps and or lambda1
            provides a different parameter eps (or lambda1) for each input signal x_i
 
     """
@@ -705,9 +702,9 @@ def ompMask(X, D, B, L=None, eps=None, lambda1=None, return_reg_path=False, numT
         a binary mask B
 
 
-        for all columns x of X, and columns beta of B, it computes a column 
+        for all columns x of X, and columns beta of B, it computes a column
             alpha of A by addressing
-            min_{alpha} ||alpha||_0  s.t  ||diag(beta)*(x-Dalpha)||_2^2 
+            min_{alpha} ||alpha||_0  s.t  ||diag(beta)*(x-Dalpha)||_2^2
                                                                   <= eps*||beta||_0/m
             or
             min_{alpha} ||diag(beta)*(x-Dalpha)||_2^2  s.t. ||alpha||_0 <= L
@@ -723,11 +720,11 @@ def ompMask(X, D, B, L=None, eps=None, lambda1=None, return_reg_path=False, numT
           All the columns of D should have unit-norm !
         B: boolean m x n matrix   (mask)
           p is the number of elements in the dictionary
-        return_reg_path: 
+        return_reg_path:
           if true the function will return a tuple of matrices.
 
     Kwargs:
-        L: (optional, maximum number of elements in each decomposition, 
+        L: (optional, maximum number of elements in each decomposition,
           min(m,p) by default)
         eps: (optional, threshold on the squared l2-norm of the residual,
           0 by default
@@ -738,7 +735,7 @@ def ompMask(X, D, B, L=None, eps=None, lambda1=None, return_reg_path=False, numT
 
     Returns:
         A: double sparse p x n matrix (output coefficients)
-          path (optional): double dense p x L matrix 
+          path (optional): double dense p x L matrix
           (regularization path of the first signal)
           A = spams.ompMask(X,D,B,L,eps,return_reg_path = False,...)
           (A,path) = spams.ompMask(X,D,B,L,eps,return_reg_path = True,...)
@@ -750,11 +747,11 @@ def ompMask(X, D, B, L=None, eps=None, lambda1=None, return_reg_path=False, numT
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-         - single precision setting (even though the output alpha is double 
+         - single precision setting (even though the output alpha is double
            precision)
          - Passing an int32 vector of length n to L provides
            a different parameter L for each input signal x_i
-         - Passing a double vector of length n to eps and or lambda1 
+         - Passing a double vector of length n to eps and or lambda1
            provides a different parameter eps (or lambda1) for each input signal x_i
 
     """
@@ -796,25 +793,25 @@ def ompMask(X, D, B, L=None, eps=None, lambda1=None, return_reg_path=False, numT
 
 def cd(X, D, A0, lambda1=None, mode=spams_wrap.PENALTY, itermax=100, tol=0.001, numThreads=-1):
     """
-        cd addresses l1-decomposition problem with a 
+        cd addresses l1-decomposition problem with a
         coordinate descent type of approach.
 
-        It is optimized for solving a large number of small or medium-sized 
+        It is optimized for solving a large number of small or medium-sized
         decomposition problem (and not for a single large one).
         It first computes the Gram matrix D'D.
-        This method is particularly well adapted when there is low 
-        correlation between the dictionary elements and when one can benefit 
+        This method is particularly well adapted when there is low
+        correlation between the dictionary elements and when one can benefit
         from a warm restart.
         It aims at addressing the two following problems
         for all columns x of X, it computes a column alpha of A such that
           2) when mode=1
             min_{alpha} ||alpha||_1 s.t. ||x-Dalpha||_2^2 <= lambda1
-            For this constraint setting, the method solves a sequence of 
+            For this constraint setting, the method solves a sequence of
             penalized problems (corresponding to mode=2) and looks
             for the corresponding Lagrange multplier with a simple but
             efficient heuristic.
           3) when mode=2
-            min_{alpha} 0.5||x-Dalpha||_2^2 + lambda1||alpha||_1 
+            min_{alpha} 0.5||x-Dalpha||_2^2 + lambda1||alpha||_1
 
     Args:
         X: double m x n matrix   (input signals)
@@ -844,7 +841,7 @@ def cd(X, D, A0, lambda1=None, mode=spams_wrap.PENALTY, itermax=100, tol=0.001, 
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting (even though the output alpha 
+            - single precision setting (even though the output alpha
               is double precision)
 
     """
@@ -861,7 +858,7 @@ def somp(X, D, list_groups, L=None, eps=0., numThreads=-1):
     """
         somp is an efficient implementation of a
         Simultaneous Orthogonal Matching Pursuit algorithm. It is optimized
-        for solving a large number of small or medium-sized 
+        for solving a large number of small or medium-sized
         decomposition problem (and not for a single large one).
 
         It first computes the Gram matrix D'D and then perform
@@ -871,7 +868,7 @@ def somp(X, D, list_groups, L=None, eps=0., numThreads=-1):
         X is a matrix structured in groups of signals, which we denote
         by X=[X_1,...,X_n]
 
-        for all matrices X_i of X, 
+        for all matrices X_i of X,
             min_{A_i} ||A_i||_{0,infty}  s.t  ||X_i-D A_i||_2^2 <= eps*n_i
             where n_i is the number of columns of X_i
 
@@ -882,7 +879,7 @@ def somp(X, D, list_groups, L=None, eps=0., numThreads=-1):
     Args:
         X: double m x N matrix   (input signals)
           m is the signal size
-          N is the total number of signals 
+          N is the total number of signals
         D: double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
           All the columns of D should have unit-norm !
@@ -906,7 +903,7 @@ def somp(X, D, list_groups, L=None, eps=0., numThreads=-1):
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-         - single precision setting (even though the output alpha is double 
+         - single precision setting (even though the output alpha is double
            precision)
 
     """
@@ -921,8 +918,8 @@ def somp(X, D, list_groups, L=None, eps=0., numThreads=-1):
 
 def l1L2BCD(X, D, alpha0, list_groups, lambda1=None, mode=spams_wrap.PENALTY, itermax=100, tol=1e-3, numThreads=-1):
     """
-        l1L2BCD is a solver for a 
-        Simultaneous signal decomposition formulation based on block 
+        l1L2BCD is a solver for a
+        Simultaneous signal decomposition formulation based on block
         coordinate descent.
 
 
@@ -930,8 +927,8 @@ def l1L2BCD(X, D, alpha0, list_groups, lambda1=None, mode=spams_wrap.PENALTY, it
         by X=[X_1,...,X_n]
 
         if mode=2, it solves
-            for all matrices X_i of X, 
-            min_{A_i} 0.5||X_i-D A_i||_2^2 + lambda1/sqrt(n_i)||A_i||_{1,2}  
+            for all matrices X_i of X,
+            min_{A_i} 0.5||X_i-D A_i||_2^2 + lambda1/sqrt(n_i)||A_i||_{1,2}
             where n_i is the number of columns of X_i
         if mode=1, it solves
             min_{A_i} ||A_i||_{1,2} s.t. ||X_i-D A_i||_2^2  <= n_i lambda1
@@ -939,7 +936,7 @@ def l1L2BCD(X, D, alpha0, list_groups, lambda1=None, mode=spams_wrap.PENALTY, it
     Args:
         X: double m x N matrix   (input signals)
           m is the signal size
-          N is the total number of signals 
+          N is the total number of signals
         D: double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
         alpha0: double dense p x N matrix (initial solution)
@@ -965,7 +962,7 @@ def l1L2BCD(X, D, alpha0, list_groups, lambda1=None, mode=spams_wrap.PENALTY, it
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-         - single precision setting (even though the output alpha is double 
+         - single precision setting (even though the output alpha is double
            precision)
 
     """
@@ -1005,7 +1002,7 @@ def fistaFlat(
                   w = argmin 0.5||y- X w||_2^2 + lambda1 psi(w)
 
               - if loss='square' and regul is a regularization function for matrices
-                the entries of Y are real-valued,  W is a matrix of size p x n. 
+                the entries of Y are real-valued,  W is a matrix of size p x n.
                 It computes the matrix W such that
                   W = argmin 0.5||Y- X W||_F^2 + lambda1 psi(W)
 
@@ -1035,7 +1032,7 @@ def fistaFlat(
                   W = argmin (1/m)sum_{j=1}^m log(sum_{j=1}^r e^(x^j'(w^j-w^{y_j}))) + lambda1 psi(W)
                 where ww^j is the j-th column of WW.
 
-              - loss='cur' useful to perform sparse CUR matrix decompositions, 
+              - loss='cur' useful to perform sparse CUR matrix decompositions,
                   W = argmin 0.5||Y-X*W*X||_F^2 + lambda1 psi(W)
 
 
@@ -1046,10 +1043,10 @@ def fistaFlat(
 
     Args:
         Y: double dense m x n matrix
-        X: double dense or sparse m x p matrix   
+        X: double dense or sparse m x p matrix
         W0: double dense p x n matrix or p x Nn matrix (for multi-logistic loss)
           initial guess
-        return_optim_info: 
+        return_optim_info:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1079,13 +1076,13 @@ def fistaFlat(
         linesearch_mode: (line-search scheme when ista=true:
         0: default, monotonic backtracking scheme
         1: monotonic backtracking scheme, with restart at each iteration
-        2: Barzilai-Borwein step sizes (similar to SparSA by Wright et al.) 
+        2: Barzilai-Borwein step sizes (similar to SparSA by Wright et al.)
         3: non-monotonic backtracking
         compute_gram: (optional, pre-compute X^TX, false by default).
         intercept: (optional, do not regularize last row of W, false by default).
         ista: (optional, use ista instead of fista, false by default).
         subgrad: (optional, if not ista, use subradient descent instead of fista, false by default).
-        a: 
+        a:
         b: (optional, if subgrad, the gradient step is a/(t+b)
           also similar options as proximalFlat
 
@@ -1184,11 +1181,11 @@ def fistaTree(
 
     Args:
         Y: double dense m x n matrix
-        X: double dense or sparse m x p matrix   
+        X: double dense or sparse m x p matrix
         W0: double dense p x n matrix or p x Nn matrix (for multi-logistic loss)
           initial guess
         tree: named list (see documentation of proximalTree)
-        return_optim_info: 
+        return_optim_info:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1217,7 +1214,7 @@ def fistaTree(
         intercept: (optional, do not regularize last row of W, false by default).
         ista: (optional, use ista instead of fista, false by default).
         subgrad: (optional, if not ista, use subradient descent instead of fista, false by default).
-        a: 
+        a:
         b: (optional, if subgrad, the gradient step is a/(t+b)
           also similar options as proximalTree
 
@@ -1306,11 +1303,11 @@ def fistaGraph(
 
     Args:
         Y: double dense m x n matrix
-        X: double dense or sparse m x p matrix   
+        X: double dense or sparse m x p matrix
         W0: double dense p x n matrix or p x Nn matrix (for multi-logistic loss)
           initial guess
         graph: struct (see documentation of proximalGraph)
-        return_optim_info: 
+        return_optim_info:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1336,7 +1333,7 @@ def fistaGraph(
         intercept: (optional, do not regularize last row of W, false by default).
         ista: (optional, use ista instead of fista, false by default).
         subgrad: (optional, if not ista, use subradient descent instead of fista, false by default).
-        a: 
+        a:
         b: (optional, if subgrad, the gradient step is a/(t+b)
           also similar options as proximalTree
 
@@ -1405,10 +1402,10 @@ def proximalFlat(U, return_val_loss=False, numThreads=-1, lambda1=1.0, lambda2=0
                  pos=False, clever=True, size_group=1, groups=None, transpose=False):
     """
         proximalFlat computes proximal operators. Depending
-            on the value of regul, it computes 
+            on the value of regul, it computes
 
 
-        Given an input matrix U=[u^1,\ldots,u^n], it computes a matrix 
+        Given an input matrix U=[u^1,\ldots,u^n], it computes a matrix
         V=[v^1,\ldots,v^n] such that
         if one chooses a regularization functions on vectors, it computes
         for each column u of U, a column v of V solving
@@ -1429,37 +1426,37 @@ def proximalFlat(U, return_val_loss=False, numThreads=-1, lambda1=1.0, lambda2=0
             argmin 0.5||u-v||_2^2 s.t. ||v||_1 <= lambda1
         if regul='l2-not-squared'
             argmin 0.5||u-v||_2^2 + lambda1||v||_2
-        if regul='group-lasso-l2'  
-            argmin 0.5||u-v||_2^2 + lambda1 sum_g ||v_g||_2 
+        if regul='group-lasso-l2'
+            argmin 0.5||u-v||_2^2 + lambda1 sum_g ||v_g||_2
             where the groups are either defined by groups or by size_group,
         if regul='group-lasso-linf'
             argmin 0.5||u-v||_2^2 + lambda1 sum_g ||v_g||_inf
-        if regul='sparse-group-lasso-l2'  
+        if regul='sparse-group-lasso-l2'
             argmin 0.5||u-v||_2^2 + lambda1 sum_g ||v_g||_2 + lambda1_2 ||v||_1
             where the groups are either defined by groups or by size_group,
         if regul='sparse-group-lasso-linf'
             argmin 0.5||u-v||_2^2 + lambda1 sum_g ||v_g||_inf + lambda1_2 ||v||_1
-        if regul='trace-norm-vec' 
-            argmin 0.5||u-v||_2^2 + lambda1 ||mat(v)||_* 
+        if regul='trace-norm-vec'
+            argmin 0.5||u-v||_2^2 + lambda1 ||mat(v)||_*
            where mat(v) has size_group rows
 
         if one chooses a regularization function on matrices
-        if regul='l1l2',  V= 
+        if regul='l1l2',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_{1/2}
-        if regul='l1linf',  V= 
+        if regul='l1linf',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_{1/inf}
-        if regul='l1l2+l1',  V= 
+        if regul='l1l2+l1',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_{1/2} + lambda1_2||V||_{1/1}
-        if regul='l1linf+l1',  V= 
+        if regul='l1linf+l1',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_{1/inf} + lambda1_2||V||_{1/1}
-        if regul='l1linf+row-column',  V= 
+        if regul='l1linf+row-column',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_{1/inf} + lambda1_2||V'||_{1/inf}
-        if regul='trace-norm',  V= 
+        if regul='trace-norm',  V=
             argmin 0.5||U-V||_F^2 + lambda1||V||_*
-        if regul='rank',  V= 
+        if regul='rank',  V=
             argmin 0.5||U-V||_F^2 + lambda1 rank(V)
-        if regul='none',  V= 
-            argmin 0.5||U-V||_F^2 
+        if regul='none',  V=
+            argmin 0.5||U-V||_F^2
 
         for all these regularizations, it is possible to enforce non-negativity constraints
         with the option pos, and to prevent the last row of U to be regularized, with
@@ -1468,7 +1465,7 @@ def proximalFlat(U, return_val_loss=False, numThreads=-1, lambda1=1.0, lambda2=0
     Args:
         U: double m x n matrix   (input signals)
           m is the signal size
-        return_val_loss: 
+        return_val_loss:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1543,7 +1540,7 @@ def proximalTree(U, tree, return_val_loss=False, numThreads=-1, lambda1=1.0, lam
                  pos=False, clever=True, size_group=1, transpose=False):
     """
         proximalTree computes a proximal operator. Depending
-            on the value of regul, it computes 
+            on the value of regul, it computes
 
 
         Given an input matrix U=[u^1,\ldots,u^n], and a tree-structured set of groups T,
@@ -1554,10 +1551,10 @@ def proximalTree(U, tree, return_val_loss=False, numThreads=-1, lambda1=1.0, lam
         if regul='tree-l0'
             argmin 0.5||u-v||_2^2 + lambda1 \sum_{g \in T} \delta^g(v)
         if regul='tree-l2'
-          for all i, v^i = 
+          for all i, v^i =
             argmin 0.5||u-v||_2^2 + lambda1\sum_{g \in T} \eta_g||v_g||_2
         if regul='tree-linf'
-          for all i, v^i = 
+          for all i, v^i =
             argmin 0.5||u-v||_2^2 + lambda1\sum_{g \in T} \eta_g||v_g||_inf
 
         when the regularization function is for matrices:
@@ -1574,24 +1571,24 @@ def proximalTree(U, tree, return_val_loss=False, numThreads=-1, lambda1=1.0, lam
     Args:
         U: double m x n matrix   (input signals)
           m is the signal size
-        tree: named list 
+        tree: named list
           with four fields, eta_g, groups, own_variables and N_own_variables.
 
           The tree structure requires a particular organization of groups and variables
           * Let us denote by N = |T|, the number of groups.
           the groups should be ordered T={g1,g2,\ldots,gN} such that if gi is included
-          in gj, then j <= i. g1 should be the group at the root of the tree 
+          in gj, then j <= i. g1 should be the group at the root of the tree
           and contains every variable.
-          * Every group is a set of  contiguous indices for instance 
+          * Every group is a set of  contiguous indices for instance
           gi={3,4,5} or gi={4,5,6,7} or gi={4}, but not {3,5};
           * We define root(gi) as the indices of the variables that are in gi,
           but not in its descendants. For instance for
-          T={ g1={1,2,3,4},g2={2,3},g3={4} }, then, root(g1)={1}, 
+          T={ g1={1,2,3,4},g2={2,3},g3={4} }, then, root(g1)={1},
           root(g2)={2,3}, root(g3)={4},
           We assume that for all i, root(gi) is a set of contigous variables
           * We assume that the smallest of root(gi) is also the smallest index of gi.
 
-          For instance, 
+          For instance,
           T={ g1={1,2,3,4},g2={2,3},g3={4} }, is a valid set of groups.
           but we can not have
           T={ g1={1,2,3,4},g2={1,2},g3={3} }, since root(g1)={4} and 4 is not the
@@ -1603,25 +1600,25 @@ def proximalTree(U, tree, return_val_loss=False, numThreads=-1, lambda1=1.0, lam
           see more examples in test_ProximalTree.m of valid tree-structured sets of groups.
 
           The first fields sets the weights for every group
-          tree['eta_g']            double N vector 
+          tree['eta_g']            double N vector
 
-          The next field sets inclusion relations between groups 
+          The next field sets inclusion relations between groups
           (but not between groups and variables):
-          tree['groups']           sparse (double or boolean) N x N matrix  
-          the (i,j) entry is non-zero if and only if i is different than j and 
+          tree['groups']           sparse (double or boolean) N x N matrix
+          the (i,j) entry is non-zero if and only if i is different than j and
           gi is included in gj.
           the first column corresponds to the group at the root of the tree.
 
-          The next field define the smallest index of each group gi, 
+          The next field define the smallest index of each group gi,
           which is also the smallest index of root(gi)
           tree['own_variables']    int32 N vector
 
           The next field define for each group gi, the size of root(gi)
-          tree['N_own_variables']  int32 N vector 
+          tree['N_own_variables']  int32 N vector
 
           examples are given in test_ProximalTree.m
 
-        return_val_loss: 
+        return_val_loss:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1696,7 +1693,7 @@ def proximalGraph(U, graph, return_val_loss=False, numThreads=-1, lambda1=1.0, l
                   pos=False, clever=True, eval=None, size_group=1, transpose=False):
     """
         proximalGraph computes a proximal operator. Depending
-            on the value of regul, it computes 
+            on the value of regul, it computes
 
 
         Given an input matrix U=[u^1,\ldots,u^n], and a set of groups G,
@@ -1728,22 +1725,22 @@ def proximalGraph(U, graph, return_val_loss=False, numThreads=-1, lambda1=1.0, l
           with three fields, eta_g, groups, and groups_var
 
           The first fields sets the weights for every group
-          graph.eta_g            double N vector 
+          graph.eta_g            double N vector
 
-          The next field sets inclusion relations between groups 
+          The next field sets inclusion relations between groups
           (but not between groups and variables):
-          graph.groups           sparse (double or boolean) N x N matrix  
-          the (i,j) entry is non-zero if and only if i is different than j and 
+          graph.groups           sparse (double or boolean) N x N matrix
+          the (i,j) entry is non-zero if and only if i is different than j and
           gi is included in gj.
 
           The next field sets inclusion relations between groups and variables
           graph.groups_var       sparse (double or boolean) p x N matrix
-          the (i,j) entry is non-zero if and only if the variable i is included 
+          the (i,j) entry is non-zero if and only if the variable i is included
           in gj, but not in any children of gj.
 
           examples are given in test_ProximalGraph.m
 
-        return_val_loss: 
+        return_val_loss:
           if true the function will return a tuple of matrices.
 
     Kwargs:
@@ -1900,12 +1897,12 @@ def trainDL(
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         arXiv:0908.0050
 
-        "Online Dictionary Learning for Sparse Coding"      
+        "Online Dictionary Learning for Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         ICML 2009.
 
         Note that if you use mode=1 or 2, if the training set has a
-        reasonable size and you have enough memory on your computer, you 
+        reasonable size and you have enough memory on your computer, you
         should use trainDL_Memory instead.
 
 
@@ -1917,29 +1914,29 @@ def trainDL(
         min_{D in C} (1/n) sum_{i=1}^n  ||alpha_i||_1  s.t.  ...
                                               ||x_i-Dalpha_i||_2^2 <= lambda1
            3) if mode=2
-        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2 + ... 
+        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2 + ...
                                      lambda1||alpha_i||_1 + lambda1_2||alpha_i||_2^2
            4) if mode=3, the sparse coding is done with OMP
-        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2  s.t. ... 
+        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2  s.t. ...
                                                      ||alpha_i||_0 <= lambda1
            5) if mode=4, the sparse coding is done with OMP
         min_{D in C} (1/n) sum_{i=1}^n  ||alpha_i||_0  s.t.  ...
                                               ||x_i-Dalpha_i||_2^2 <= lambda1
            6) if mode=5, the sparse coding is done with OMP
-        min_{D in C} (1/n) sum_{i=1}^n 0.5||x_i-Dalpha_i||_2^2 +lambda1||alpha_i||_0  
+        min_{D in C} (1/n) sum_{i=1}^n 0.5||x_i-Dalpha_i||_2^2 +lambda1||alpha_i||_0
 
 
         C is a convex set verifying
            1) if modeD=0
               C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 <= 1 }
            2) if modeD=1
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                                      gamma1||d_j||_1 <= 1 }
            3) if modeD=2
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                      gamma1||d_j||_1 + gamma2 FL(d_j) <= 1 }
            4) if modeD=3
-              C={  D in Real^{m x p}  s.t.  forall j,  (1-gamma1)||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  (1-gamma1)||d_j||_2^2 + ...
                                      gamma1||d_j||_1 <= 1 }
 
         Potentially, n can be very large with this algorithm.
@@ -1948,7 +1945,7 @@ def trainDL(
         X: double m x n matrix   (input signals)
           m is the signal size
           n is the number of signals to decompose
-        return_model: 
+        return_model:
           if true the function will return the model
           as a named list ('A' = A, 'B' = B, 'iter' = n)
         model: None or model (as A,B,iter) to use as initialisation
@@ -1956,40 +1953,40 @@ def trainDL(
     Kwargs:
         D: (optional) double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
-          When D is not provided, the dictionary is initialized 
+          When D is not provided, the dictionary is initialized
           with random elements from the training set.
         K: (size of the dictionary, optional is D is provided)
         lambda1: (parameter)
         lambda2: (optional, by default 0)
-        iter: (number of iterations).  If a negative number is 
+        iter: (number of iterations).  If a negative number is
           provided it will perform the computation during the
           corresponding number of seconds. For instance iter=-5
           learns the dictionary during 5 seconds.
-        mode: (optional, see above, by default 2) 
+        mode: (optional, see above, by default 2)
         posAlpha: (optional, adds positivity constraints on the
-          coefficients, false by default, not compatible with 
+          coefficients, false by default, not compatible with
           mode =3,4)
         modeD: (optional, see above, by default 0)
-        posD: (optional, adds positivity constraints on the 
-          dictionary, false by default, not compatible with 
+        posD: (optional, adds positivity constraints on the
+          dictionary, false by default, not compatible with
           modeD=2)
         gamma1: (optional parameter for modeD >= 1)
         gamma2: (optional parameter for modeD = 2)
-        batchsize: (optional, size of the minibatch, by default 
+        batchsize: (optional, size of the minibatch, by default
           512)
         iter_updateD: (optional, number of BCD iterations for the dictionary
           update step, by default 1)
         modeParam: (optimization mode).
-          1) if modeParam=0, the optimization uses the 
+          1) if modeParam=0, the optimization uses the
           parameter free strategy of the ICML paper
-          2) if modeParam=1, the optimization uses the 
+          2) if modeParam=1, the optimization uses the
           parameters rho as in arXiv:0908.0050
-          3) if modeParam=2, the optimization uses exponential 
-          decay weights with updates of the form 
+          3) if modeParam=2, the optimization uses exponential
+          decay weights with updates of the form
           A_{t} <- rho A_{t-1} + alpha_t alpha_t^T
         rho: (optional) tuning parameter (see paper arXiv:0908.0050)
         t0: (optional) tuning parameter (see paper arXiv:0908.0050)
-        clean: (optional, true by default. prunes 
+        clean: (optional, true by default. prunes
           automatically the dictionary from unused elements).
         verbose: (optional, true by default, increase verbosity)
         numThreads: (optional, number of threads for exploiting
@@ -2015,7 +2012,7 @@ def trainDL(
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting 
+            - single precision setting
 
     """
 
@@ -2046,7 +2043,7 @@ def structTrainDL(
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         arXiv:0908.0050
 
-        "Online Dictionary Learning for Sparse Coding"      
+        "Online Dictionary Learning for Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         ICML 2009.
 
@@ -2061,13 +2058,13 @@ def structTrainDL(
            1) if modeD=0
               C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 <= 1 }
            2) if modeD=1
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                                      gamma1||d_j||_1 <= 1 }
            3) if modeD=2
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                      gamma1||d_j||_1 + gamma2 FL(d_j) <= 1 }
            4) if modeD=3
-              C={  D in Real^{m x p}  s.t.  forall j,  (1-gamma1)||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  (1-gamma1)||d_j||_2^2 + ...
                                      gamma1||d_j||_1 <= 1 }
 
         Potentially, n can be very large with this algorithm.
@@ -2076,7 +2073,7 @@ def structTrainDL(
         X: double m x n matrix   (input signals)
           m is the signal size
           n is the number of signals to decompose
-        return_model: 
+        return_model:
           if true the function will return the model
           as a named list ('A' = A, 'B' = B, 'iter' = n)
         model: None or model (as A,B,iter) to use as initialisation
@@ -2084,19 +2081,19 @@ def structTrainDL(
     Kwargs:
         D: (optional) double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
-          When D is not provided, the dictionary is initialized 
+          When D is not provided, the dictionary is initialized
           with random elements from the training set.
         K: (size of the dictionary, optional is D is provided)
         lambda1: (parameter)
         lambda2: (optional, by default 0)
         lambda3: (optional, regularization parameter, 0 by default)
-        iter: (number of iterations).  If a negative number is 
+        iter: (number of iterations).  If a negative number is
           provided it will perform the computation during the
           corresponding number of seconds. For instance iter=-5
           learns the dictionary during 5 seconds.
         regul: choice of regularization : one of
           'l0' 'l1' 'l2' 'linf' 'none' 'elastic-net' 'fused-lasso'
-          'graph' 'graph-ridge' 'graph-l2' 'tree-l0' 'tree-l2' 'tree-linf' 
+          'graph' 'graph-ridge' 'graph-l2' 'tree-l0' 'tree-l2' 'tree-linf'
         tree: struct (see documentation of proximalTree);
           needed for regul of graph kind.
         graph: struct (see documentation of proximalGraph);
@@ -2104,29 +2101,29 @@ def structTrainDL(
         posAlpha: (optional, adds positivity constraints on the
           coefficients, false by default.
         modeD: (optional, see above, by default 0)
-        posD: (optional, adds positivity constraints on the 
-          dictionary, false by default, not compatible with 
+        posD: (optional, adds positivity constraints on the
+          dictionary, false by default, not compatible with
           modeD=2)
         gamma1: (optional parameter for modeD >= 1)
         gamma2: (optional parameter for modeD = 2)
-        batchsize: (optional, size of the minibatch, by default 
+        batchsize: (optional, size of the minibatch, by default
           512)
         iter_updateD: (optional, number of BCD iterations for the dictionary
           update step, by default 1)
         modeParam: (optimization mode).
-          1) if modeParam=0, the optimization uses the 
+          1) if modeParam=0, the optimization uses the
           parameter free strategy of the ICML paper
-          2) if modeParam=1, the optimization uses the 
+          2) if modeParam=1, the optimization uses the
           parameters rho as in arXiv:0908.0050
-          3) if modeParam=2, the optimization uses exponential 
-          decay weights with updates of the form 
+          3) if modeParam=2, the optimization uses exponential
+          decay weights with updates of the form
           A_{t} <- rho A_{t-1} + alpha_t alpha_t^T
         ista: (optional, use ista instead of fista, false by default).
         tol: (optional, tolerance for stopping criteration, which is a relative duality gap
         fixed_step: (deactive the line search for L in fista and use K instead)
         rho: (optional) tuning parameter (see paper arXiv:0908.0050)
         t0: (optional) tuning parameter (see paper arXiv:0908.0050)
-        clean: (optional, true by default. prunes 
+        clean: (optional, true by default. prunes
           automatically the dictionary from unused elements).
         verbose: (optional, true by default, increase verbosity)
         numThreads: (optional, number of threads for exploiting
@@ -2152,7 +2149,7 @@ def structTrainDL(
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting 
+            - single precision setting
 
     """
 
@@ -2170,7 +2167,7 @@ def trainDL_Memory(X, D=None, numThreads=-1, batchsize=-1,
                    K=-1, lambda1=None, iter=-1, t0=1e-5, mode=spams_wrap.PENALTY,
                    posD=False, expand=False, modeD=spams_wrap.L2, whiten=False, clean=True, gamma1=0., gamma2=0., rho=1.0, iter_updateD=1, stochastic_deprecated=False, modeParam=0, batch=False, log_deprecated=False, logName=''):
     """
-        trainDL_Memory is an efficient but memory consuming 
+        trainDL_Memory is an efficient but memory consuming
         variant of the dictionary learning technique presented in
 
 
@@ -2178,11 +2175,11 @@ def trainDL_Memory(X, D=None, numThreads=-1, batchsize=-1,
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         arXiv:0908.0050
 
-        "Online Dictionary Learning for Sparse Coding"      
+        "Online Dictionary Learning for Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         ICML 2009.
 
-        Contrary to the approaches above, the algorithm here 
+        Contrary to the approaches above, the algorithm here
            does require to store all the coefficients from all the training
            signals. For this reason this variant can not be used with large
            training sets, but is more efficient than the regular online
@@ -2193,17 +2190,17 @@ def trainDL_Memory(X, D=None, numThreads=-1, batchsize=-1,
         min_{D in C} (1/n) sum_{i=1}^n  ||alpha_i||_1  s.t.  ...
                                             ||x_i-Dalpha_i||_2^2 <= lambda1
            2) if mode=2
-        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2 + ... 
-                                                         lambda1||alpha_i||_1  
+        min_{D in C} (1/n) sum_{i=1}^n (1/2)||x_i-Dalpha_i||_2^2 + ...
+                                                         lambda1||alpha_i||_1
 
         C is a convex set verifying
            1) if modeD=0
               C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 <= 1 }
            1) if modeD=1
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                                      gamma1||d_j||_1 <= 1 }
            1) if modeD=2
-              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ... 
+              C={  D in Real^{m x p}  s.t.  forall j,  ||d_j||_2^2 + ...
                                      gamma1||d_j||_1 + gamma2 FL(d_j) <= 1 }
 
         Potentially, n can be very large with this algorithm.
@@ -2216,36 +2213,36 @@ def trainDL_Memory(X, D=None, numThreads=-1, batchsize=-1,
     Kwargs:
         D: (optional) double m x p matrix   (dictionary)
           p is the number of elements in the dictionary
-          When D is not provided, the dictionary is initialized 
+          When D is not provided, the dictionary is initialized
           with random elements from the training set.
         K: (size of the dictionary, optional is D is provided)
         lambda1: (parameter)
-        iter: (number of iterations).  If a negative number is 
+        iter: (number of iterations).  If a negative number is
           provided it will perform the computation during the
           corresponding number of seconds. For instance iter=-5
           learns the dictionary during 5 seconds.
-        mode: (optional, see above, by default 2) 
+        mode: (optional, see above, by default 2)
         modeD: (optional, see above, by default 0)
-        posD: (optional, adds positivity constraints on the 
-          dictionary, false by default, not compatible with 
+        posD: (optional, adds positivity constraints on the
+          dictionary, false by default, not compatible with
           modeD=2)
         gamma1: (optional parameter for modeD >= 1)
         gamma2: (optional parameter for modeD = 2)
-        batchsize: (optional, size of the minibatch, by default 
+        batchsize: (optional, size of the minibatch, by default
           512)
-        iter_updateD: (optional, number of BCD iterations for the dictionary 
+        iter_updateD: (optional, number of BCD iterations for the dictionary
           update step, by default 1)
         modeParam: (optimization mode).
-          1) if modeParam=0, the optimization uses the 
+          1) if modeParam=0, the optimization uses the
           parameter free strategy of the ICML paper
-          2) if modeParam=1, the optimization uses the 
+          2) if modeParam=1, the optimization uses the
           parameters rho as in arXiv:0908.0050
-          3) if modeParam=2, the optimization uses exponential 
-          decay weights with updates of the form 
+          3) if modeParam=2, the optimization uses exponential
+          decay weights with updates of the form
           A_{t} <- rho A_{t-1} + alpha_t alpha_t^T
         rho: (optional) tuning parameter (see paper arXiv:0908.0050)
         t0: (optional) tuning parameter (see paper arXiv:0908.0050)
-        clean: (optional, true by default. prunes 
+        clean: (optional, true by default. prunes
           automatically the dictionary from unused elements).
         numThreads: (optional, number of threads for exploiting
           multi-core / multi-cpus. By default, it takes the value -1,
@@ -2269,7 +2266,7 @@ def trainDL_Memory(X, D=None, numThreads=-1, batchsize=-1,
     Note:
         this function admits a few experimental usages, which have not
         been extensively tested:
-            - single precision setting (even though the output alpha is double 
+            - single precision setting (even though the output alpha is double
               precision)
 
     """
@@ -2287,14 +2284,14 @@ def nmf(X, return_lasso=False, model=None,
         iter=-1, t0=1e-5, clean=True, rho=1.0, modeParam=0, batch=False):
     """
         trainDL is an efficient implementation of the
-        non-negative matrix factorization technique presented in 
+        non-negative matrix factorization technique presented in
 
 
         "Online Learning for Matrix Factorization and Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         arXiv:0908.0050
 
-        "Online Dictionary Learning for Sparse Coding"      
+        "Online Dictionary Learning for Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         ICML 2009.
 
@@ -2304,32 +2301,32 @@ def nmf(X, return_lasso=False, model=None,
         X: double m x n matrix   (input signals)
           m is the signal size
           n is the number of signals to decompose
-        return_lasso: 
+        return_lasso:
           if true the function will return a tuple of matrices.
 
     Kwargs:
         K: (number of required factors)
-        iter: (number of iterations).  If a negative number 
+        iter: (number of iterations).  If a negative number
           is provided it will perform the computation during the
           corresponding number of seconds. For instance iter=-5
           learns the dictionary during 5 seconds.
-        batchsize: (optional, size of the minibatch, by default 
+        batchsize: (optional, size of the minibatch, by default
           512)
         modeParam: (optimization mode).
-          1) if modeParam=0, the optimization uses the 
+          1) if modeParam=0, the optimization uses the
           parameter free strategy of the ICML paper
-          2) if modeParam=1, the optimization uses the 
+          2) if modeParam=1, the optimization uses the
           parameters rho as in arXiv:0908.0050
-          3) if modeParam=2, the optimization uses exponential 
-          decay weights with updates of the form  
+          3) if modeParam=2, the optimization uses exponential
+          decay weights with updates of the form
           A_{t} <- rho A_{t-1} + alpha_t alpha_t^T
-        rho: (optional) tuning parameter (see paper 
+        rho: (optional) tuning parameter (see paper
           arXiv:0908.0050)
-        t0: (optional) tuning parameter (see paper 
+        t0: (optional) tuning parameter (see paper
           arXiv:0908.0050)
-        clean: (optional, true by default. prunes automatically 
+        clean: (optional, true by default. prunes automatically
           the dictionary from unused elements).
-        batch: (optional, false by default, use batch learning 
+        batch: (optional, false by default, use batch learning
           instead of online learning)
         numThreads: (optional, number of threads for exploiting
           multi-core / multi-cpus. By default, it takes the value -1,
@@ -2337,9 +2334,9 @@ def nmf(X, return_lasso=False, model=None,
         model: struct (optional) learned model for "retraining" the data.
 
     Returns:
-        U: double m x p matrix   
+        U: double m x p matrix
         V: double p x n matrix   (optional)
-        model: struct (optional) learned model to be used for 
+        model: struct (optional) learned model to be used for
           "retraining" the data.
           U = spams.nmf(X,return_lasso = False,...)
           (U,V) = spams.nmf(X,return_lasso = True,...)
@@ -2372,14 +2369,14 @@ def nnsc(X, return_lasso=False, model=None, lambda1=None,
          iter=-1, t0=1e-5, clean=True, rho=1.0, modeParam=0, batch=False):
     """
         trainDL is an efficient implementation of the
-        non-negative sparse coding technique presented in 
+        non-negative sparse coding technique presented in
 
 
         "Online Learning for Matrix Factorization and Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         arXiv:0908.0050
 
-        "Online Dictionary Learning for Sparse Coding"      
+        "Online Dictionary Learning for Sparse Coding"
         by Julien Mairal, Francis Bach, Jean Ponce and Guillermo Sapiro
         ICML 2009.
 
@@ -2389,33 +2386,33 @@ def nnsc(X, return_lasso=False, model=None, lambda1=None,
         X: double m x n matrix   (input signals)
           m is the signal size
           n is the number of signals to decompose
-        return_lasso: 
+        return_lasso:
           if true the function will return a tuple of matrices.
 
     Kwargs:
         K: (number of required factors)
         lambda1: (parameter)
-        iter: (number of iterations).  If a negative number 
+        iter: (number of iterations).  If a negative number
           is provided it will perform the computation during the
           corresponding number of seconds. For instance iter=-5
           learns the dictionary during 5 seconds.
-        batchsize: (optional, size of the minibatch, by default 
+        batchsize: (optional, size of the minibatch, by default
           512)
         modeParam: (optimization mode).
-          1) if modeParam=0, the optimization uses the 
+          1) if modeParam=0, the optimization uses the
           parameter free strategy of the ICML paper
-          2) if modeParam=1, the optimization uses the 
+          2) if modeParam=1, the optimization uses the
           parameters rho as in arXiv:0908.0050
-          3) if modeParam=2, the optimization uses exponential 
-          decay weights with updates of the form 
+          3) if modeParam=2, the optimization uses exponential
+          decay weights with updates of the form
           A_{t} <- rho A_{t-1} + alpha_t alpha_t^T
         rho: (optional) tuning parameter (see paper
           arXiv:0908.0050)
-        t0: (optional) tuning parameter (see paper 
+        t0: (optional) tuning parameter (see paper
           arXiv:0908.0050)
-        clean: (optional, true by default. prunes automatically 
+        clean: (optional, true by default. prunes automatically
           the dictionary from unused elements).
-        batch: (optional, false by default, use batch learning 
+        batch: (optional, false by default, use batch learning
           instead of online learning)
         numThreads: (optional, number of threads for exploiting
           multi-core / multi-cpus. By default, it takes the value -1,
@@ -2423,9 +2420,9 @@ def nnsc(X, return_lasso=False, model=None, lambda1=None,
         model: struct (optional) learned model for "retraining" the data.
 
     Returns:
-        U: double m x p matrix   
+        U: double m x p matrix
         V: double p x n matrix   (optional)
-        model: struct (optional) learned model to be used for 
+        model: struct (optional) learned model to be used for
           "retraining" the data.
           U = spams.nnsc(X,return_lasso = False,...)
           (U,V) = spams.nnsc(X,return_lasso = True,...)
@@ -2554,8 +2551,8 @@ def displayPatches(D):
     tmp = np.zeros(((sizeEdge+1)*nBins+1, (sizeEdge+1)*nBins+1, V), order='F')
 #    patch = np.zeros(sizeEdge,sizeEdge)
     mm = sizeEdge * sizeEdge
-    for ii in six.moves.xrange(0, nBins):
-        for jj in six.moves.xrange(0, nBins):
+    for ii in range(0, nBins):
+        for jj in range(0, nBins):
             io = ii
             jo = jj
             offsetx = 0
@@ -2612,7 +2609,7 @@ def readGroupStruct(file):
             but '[' and '] must be present. Numbers in the range (0 - Nv-1)
         children-list : a space separated list of node-id's
             If the list is empty, '->' may be omitted.
-        The data must obey some rules : 
+        The data must obey some rules :
             - A group contains the variables of the corresponding node and of the whole subtree.
             - Variables attached to a node are those that are not int the subtree.
             - If the data destination is a Graph, there may be several independant trees,
@@ -2654,7 +2651,7 @@ def groupStructOfString(s):
              but '[' and '] must be present. Numbers in the range (0 - Nv-1)
         children-list : a space separated list of node-id's
             If the list is empty, '->' may be omitted.
-        The data must obey some rules : 
+        The data must obey some rules :
             - A group contains the variables of the corresponding node and of the whole subtree.
             - Variables attached to a node are those that are not int the subtree.
             - If the data destination is a Graph, there may be several independant trees,
