@@ -189,6 +189,10 @@ opts = dict(
     author='Julien Mairal',
     author_email='spams.dev@inria.fr',
     url='https://thoth.inrialpes.fr/people/mairal/spams/',
+    project_urls={
+        "Bug Reports": "https://github.com/getspams/spams-python/issues",
+        "Source": "https://github.com/getspams/spams-python",
+    },
     license='GPLv3',
     python_requires='>=3',
     install_requires=['Cython>=0.29', 'numpy>=1.12',
