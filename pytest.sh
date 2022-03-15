@@ -78,6 +78,8 @@ logging "-- Preparing python environment for test..."
 ${PYTHON} -m venv --clear ${TEST_VENV}
 source ${TEST_VENV}/bin/activate
 
+logging "---- Python version = $(python -V)"
+
 pip install -U ${TEST_REQ}
 
 ################################################################################
