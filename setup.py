@@ -8,40 +8,7 @@ from setuptools.command.build_ext import build_ext
 from distutils.sysconfig import get_python_inc
 # from distutils.util import get_platform
 
-def check_openmp():
-    # see https://stackoverflow.com/questions/16549893/programatically-testing-for-openmp-support-from-a-python-setup-script/16555458#16555458
-    import os, tempfile, textwrap, subprocess, shutil
-
-    # see http://openmp.org/wp/openmp-compilers/
-    omp_test = textwrap.dedent(
-        r"""
-        #include <omp.h>
-        #include <stdio.h>
-        int main() {
-        #pragma omp parallel
-        printf("Hello from thread %d over %d\n", omp_get_thread_num(), omp_get_num_threads());
-        }
-        """
-    )
-
-    try:
-        tmpdir = tempfile.mkdtemp()
-        filename = r'test.c'
-        with open(os.path.join(tmpdir, filename), 'w') as file:
-            file.write(omp_test)
-        with open(os.devnull, 'w') as fnull:
-            result = subprocess.call(
-                ['cc', '-fopenmp' ,'-o',
-                 os.path.join(tmpdir, "exec"),
-                 os.path.join(tmpdir, filename)],
-                stdout=fnull, stderr=fnull
-            )
-    except:
-        result = 1
-    finally:
-        shutil.rmtree(tmpdir)
-    # output : 0 if ok, 1 if not
-    return result
+from extension_helpers import add_openmp_flags_if_available
 
 def get_config():
     # Import numpy here, only when headers are needed
@@ -128,11 +95,6 @@ def get_config():
     else:
         libs.extend(['blas', 'lapack'])
 
-    # openMP
-    if check_openmp() == 0:
-        cc_flags.append('-fopenmp')
-        link_flags.append('-fopenmp')
-
     return incs, libs, libdirs, cc_flags, link_flags
 
 
@@ -164,6 +126,9 @@ def get_extension():
                                                '-std=c++11'],
                            language='c++',
                            depends=['spams_wrap/spams.h'])
+    
+    # add OpenMP flag if available
+    add_openmp_flags_if_available(spams_wrap)
 
     return [spams_wrap]
 
