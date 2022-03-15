@@ -195,9 +195,8 @@ opts = dict(
     },
     license='GPLv3',
     python_requires='>=3',
-    install_requires=['Cython>=0.29', 'numpy>=1.12',
-                      'Pillow>=6.0', 'scipy>=1.0', 'six>=1.12'],
-    packages=['myscipy_rand', 'spams_wrap', 'spams', 'spams.tests'],
+    install_requires=['numpy>=1.12', 'Pillow>=6.0', 'scipy>=1.0'],
+    packages=['spams_wrap', 'spams', 'spams.tests'],
     cmdclass={'build_ext': CustomBuildExtCommand},
     ext_modules=get_extension(),
     package_data={

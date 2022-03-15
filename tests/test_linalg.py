@@ -1,20 +1,10 @@
-from __future__ import absolute_import, division, print_function
-import six.moves
-
-import sys
 import numpy as np
-import scipy
 import scipy.sparse as ssp
 import spams
 import time
 from test_utils import *
 
-if not ('rand' in ssp.__dict__):
-    import myscipy_rand
-    ssprand = myscipy_rand.rand
-else:
-    ssprand = ssp.rand
-
+ssprand = ssp.rand
 
 def test_sort():
     n = 2000000
@@ -81,7 +71,7 @@ def test_conjGrad():
     itermax = int(0.5 * len(b))
 
     tic = time.time()
-    for i in six.moves.xrange(0, 20):
+    for i in range(0, 20):
         y1 = np.linalg.solve(A, b)
     tac = time.time()
     print("  Time (numpy): ", tac - tic)
@@ -89,7 +79,7 @@ def test_conjGrad():
     print("Mean error on b : %f" % (x1.sum() / b.shape[0]))
 
     tic = time.time()
-    for i in six.moves.xrange(0, 20):
+    for i in range(0, 20):
         y2 = spams.conjGrad(A, b, x0, tol, itermax)
 # *        y2 = spams.conjGrad(A,b)
     tac = time.time()
