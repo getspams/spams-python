@@ -74,7 +74,7 @@ def get_config():
         lapack_opt_info = np.__config__.lapack_opt_info
     except:
         try:
-            lapack_opt_info = np.__config__.bla_ilp64_opt_info
+            lapack_opt_info = np.__config__.lapack_ilp64_opt_info
         except:
             lapack_opt_info = None
 
