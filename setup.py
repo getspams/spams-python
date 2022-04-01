@@ -116,7 +116,7 @@ def get_config():
                 is_mkl = True
                 break
 
-    libdirs = np.distutils.system_info.blas_info().get_lib_dirs()
+    libdirs = blas_info().get_lib_dirs()
     if is_mkl:
         for _ in blas_opt_info.get('include_dirs', []):
             if _ not in incs:
