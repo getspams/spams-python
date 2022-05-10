@@ -10,6 +10,11 @@ from distutils.sysconfig import get_python_inc
 
 from extension_helpers import add_openmp_flags_if_available
 
+from pprint import pprint
+
+import distutils.log
+distutils.log.set_verbosity(1)
+
 def get_config():
     # Import numpy here, only when headers are needed
     import numpy as np
@@ -129,6 +134,10 @@ def get_extension():
     
     # add OpenMP flag if available
     add_openmp_flags_if_available(spams_wrap)
+    
+    # debug
+    pprint(spams_wrap.__dict__)
+    
 
     return [spams_wrap]
 
