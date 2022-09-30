@@ -2,4 +2,5 @@
 requires = ["oldest-supported-numpy",
             "setuptools<60.0",
             "distro",
-            "wheel"]
+            "wheel",
+            "extension-helpers"]
