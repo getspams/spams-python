@@ -1,11 +1,9 @@
 import os
 # import platform
 import sys
-import subprocess
 
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
-from tempfile import gettempdir
 
 from distutils.sysconfig import get_python_inc
 # from distutils.util import get_platform
@@ -118,13 +116,6 @@ def get_config():
                 is_mkl = True
                 break
 
-    if not is_mkl:
-        # Grab a fresh openblas for the current platform
-        cmd = 'python', 'openblas_support.py'
-        subprocess.run(cmd)
-        openblasdir = os.path.join(gettempdir(), 'openblas')
-        incs.append(os.path.join(openblasdir, 'include'))
-
     libdirs = blas_info().get_lib_dirs()
     if is_mkl:
         for _ in blas_opt_info.get('include_dirs', []):
@@ -134,8 +125,8 @@ def get_config():
             if _ not in libdirs:
                 libdirs.append(_)
         libs.extend(['mkl_rt'])
-    elif:
-        libs.extend(['openblas'])
+    else:
+        libs.extend(['blas', 'lapack'])
 
     # openMP
     if check_openmp() == 0:
