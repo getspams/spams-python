@@ -748,11 +748,11 @@ N_own_variables =  np.array([2,3,5],dtype=np.int32) <span class="c001"># nu
 eta_g = np.array([1,1,1],dtype=myfloat) <span class="c001"># weights for each group, they should be non-zero to use fenchel duality</span><br>
 groups = np.asfortranarray([[0,0,0],<br>
                             [1,0,0],<br>
-                            [1,0,0]],dtype = np.bool)<br>
+                            [1,0,0]],dtype = bool)<br>
 <span class="c001"># first group should always be the root of the tree<br>
 # non-zero entriees mean inclusion relation ship, here g2 is a children of g1,<br>
 # g3 is a children of g1</span><br>
-groups = ssp.csc_matrix(groups,dtype=np.bool)<br>
+groups = ssp.csc_matrix(groups,dtype=bool)<br>
 tree = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups,<span class="c003">'own_variables'</span> : own_variables,<br>
         <span class="c003">'N_own_variables'</span> : N_own_variables}<br>
 <span class="c002">print</span>(<span class="c003">'\ntest prox tree-l0'</span>)<br>
@@ -784,8 +784,8 @@ groups = np.asfortranarray([[0,0,0,0,0,0,0,0],<br>
                 [1,0,0,0,0,0,0,0],<br>
                 [0,0,0,0,1,0,0,0],<br>
                 [0,0,0,0,1,0,0,0],<br>
-                [0,0,0,0,0,0,1,0]],dtype = np.bool)<br>
-groups = ssp.csc_matrix(groups,dtype=np.bool)<br>
+                [0,0,0,0,0,0,1,0]],dtype = bool)<br>
+groups = ssp.csc_matrix(groups,dtype=bool)<br>
 tree = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups, <span class="c003">'own_variables'</span> : own_variables,<br>
         <span class="c003">'N_own_variables'</span> : N_own_variables}<br>
 <span class="c002">print</span>(<span class="c003">'\ntest prox tree-l0'</span>)<br>
@@ -970,7 +970,7 @@ U = np.asfortranarray(np.random.normal(size = (10,100)),dtype=myfloat)<br>
 # g2= {3 4 5 6}<br>
 # g3= {6 7 8 9}</span><br>
 eta_g = np.array([1, 1, 1],dtype=myfloat)<br>
-groups = ssp.csc_matrix(np.zeros((3,3)),dtype = np.bool)<br>
+groups = ssp.csc_matrix(np.zeros((3,3)),dtype = bool)<br>
 groups_var = ssp.csc_matrix(<br>
     np.array([[1, 0, 0],<br>
               [1, 0, 0],<br>
@@ -981,7 +981,7 @@ groups_var = ssp.csc_matrix(<br>
               [0, 1, 1],<br>
               [0, 0, 1],<br>
               [0, 0, 1],<br>
-              [0, 0, 1]],dtype=np.bool),dtype=np.bool)<br>
+              [0, 0, 1]],dtype=bool),dtype=bool)<br>
 graph = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups,<span class="c003">'groups_var'</span> : groups_var}<br>
 <br>
 <span class="c002">print</span>(<span class="c003">'\ntest prox graph'</span>)<br>
@@ -1001,7 +1001,7 @@ groups = ssp.csc_matrix(<br>
               [0, 0, 0, 0, 0],<br>
               [0, 0, 0, 0, 0],<br>
               [0, 0, 0, 0, 0],<br>
-              [0, 0, 1, 0, 0]],dtype=np.bool),dtype=np.bool)<br>
+              [0, 0, 1, 0, 0]],dtype=bool),dtype=bool)<br>
 <br>
 groups_var = ssp.csc_matrix(<br>
     np.array([[1, 0, 0, 0, 0],<br>
@@ -1013,7 +1013,7 @@ groups_var = ssp.csc_matrix(<br>
               [0, 1, 0, 0, 1],<br>
               [0, 0, 0, 0, 1],<br>
               [0, 0, 0, 0, 1],<br>
-              [0, 0, 1, 0, 0]],dtype=np.bool),dtype=np.bool)<br>
+              [0, 0, 1, 0, 0]],dtype=bool),dtype=bool)<br>
 graph = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups,<span class="c003">'groups_var'</span> : groups_var}<br>
 <span class="c002">print</span>(<span class="c003">'\ntest prox graph'</span>)<br>
 alpha = spams.proximalGraph(U,graph,False,lambda1 = lambda1,numThreads  = num_threads ,verbose = verbose,pos = pos,intercept = intercept,regul = regul)<br>
@@ -1722,8 +1722,8 @@ groups = np.asfortranarray([[0, 0, 0, 0, 0, 0, 0, 0],<br>
           [1, 0, 0, 0, 0, 0, 0, 0],<br>
           [0, 0, 0, 0, 1, 0, 0, 0],<br>
           [0, 0, 0, 0, 1, 0, 0, 0],<br>
-          [0, 0, 0, 0, 0, 0, 1, 0]],dtype = np.bool)<br>
-groups = ssp.csc_matrix(groups,dtype=np.bool)<br>
+          [0, 0, 0, 0, 0, 0, 1, 0]],dtype = bool)<br>
+groups = ssp.csc_matrix(groups,dtype=bool)<br>
 tree = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups,<span class="c003">'own_variables'</span> : own_variables,<br>
         <span class="c003">'N_own_variables'</span> : N_own_variables}<br>
 <span class="c002">print</span>(<span class="c003">'\nVarious regression experiments'</span>)<br>
@@ -1957,7 +1957,7 @@ groups = ssp.csc_matrix(np.array([[0, 0, 0, 1, 0],<br>
                    [0, 0, 0, 0, 0],<br>
                    [0, 0, 0, 0, 0],<br>
                    [0, 0, 0, 0, 0],<br>
-                   [0, 0, 1, 0, 0]],dtype=np.bool),dtype=np.bool)<br>
+                   [0, 0, 1, 0, 0]],dtype=bool),dtype=bool)<br>
 <br>
 groups_var = ssp.csc_matrix(np.array([[1, 0, 0, 0, 0],<br>
                        [1, 0, 0, 0, 0],<br>
@@ -1968,7 +1968,7 @@ groups_var = ssp.csc_matrix(np.array([[1, 0, 0, 0, 0],<br>
                        [0, 1, 0, 0, 1],<br>
                        [0, 0, 0, 0, 1],<br>
                        [0, 0, 0, 0, 1],<br>
-                       [0, 0, 1, 0, 0]],dtype=np.bool),dtype=np.bool)<br>
+                       [0, 0, 1, 0, 0]],dtype=bool),dtype=bool)<br>
 <br>
 graph = {<span class="c003">'eta_g'</span>: eta_g,<span class="c003">'groups'</span> : groups,<span class="c003">'groups_var'</span> : groups_var}<br>
 <br>
