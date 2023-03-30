@@ -2,6 +2,7 @@
 dict.png
 dict1.png
 dict2.png
+.test_venv/*
 
 *.pyc
 *.pyo
